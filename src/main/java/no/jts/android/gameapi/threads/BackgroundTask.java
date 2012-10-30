@@ -13,7 +13,7 @@ public class BackgroundTask extends AsyncTask<Object, Void, Void>{
 	protected Void doInBackground(Object... params) {
 		Activity activity = (Activity) params[0];
 		gameScreenManager = (GameScreenManager) params[1];
-		gameScreenManager.initTasks(activity);
+		gameScreenManager.doInBackground(activity);
 		return null;
 	}
 

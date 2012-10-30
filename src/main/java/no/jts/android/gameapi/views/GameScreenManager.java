@@ -22,7 +22,9 @@ public abstract class GameScreenManager extends GameSurfaceView {
 		backgroundTask.execute(activity, this);
 	}
 
-	public abstract void initTasks(Activity activity);
+	public abstract void doInBackground(Activity activity);
+
+	public abstract void onPostExecute();
 
 	public AbstractScreen getScreenInFocus() {
 		return screens.get(screenInFocus);
