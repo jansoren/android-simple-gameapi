@@ -1,13 +1,13 @@
-package no.jts.android.gameapi.activities;
+package no.jts.android.gameapi;
 
-import no.jts.android.gameapi.views.GameScreenManager;
+import no.jts.android.gameapi.screenmanager.AbstractScreenManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.KeyEvent;
 
-public abstract class GameActivity extends Activity {
+public abstract class AbstractActivity extends Activity {
 
-	protected GameScreenManager gameScreenManager;
+	protected AbstractScreenManager gameScreenManager;
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

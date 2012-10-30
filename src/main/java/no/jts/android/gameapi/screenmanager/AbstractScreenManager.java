@@ -1,9 +1,9 @@
-package no.jts.android.gameapi.views;
+package no.jts.android.gameapi.screenmanager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import no.jts.android.gameapi.threads.BackgroundTask;
+import no.jts.android.gameapi.screens.AbstractScreen;
 
 import android.app.Activity;
 import android.graphics.Canvas;
@@ -11,12 +11,12 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 
-public abstract class GameScreenManager extends GameSurfaceView {
+public abstract class AbstractScreenManager extends GameSurfaceView {
 
 	protected String screenInFocus;
 	protected Map<String, AbstractScreen> screens = new HashMap<String, AbstractScreen>();
 
-	public GameScreenManager(Activity activity) {
+	public AbstractScreenManager(Activity activity) {
 		super(activity);
 		BackgroundTask backgroundTask = new BackgroundTask();
 		backgroundTask.execute(activity, this);

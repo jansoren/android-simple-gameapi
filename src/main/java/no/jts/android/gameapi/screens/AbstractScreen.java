@@ -1,5 +1,6 @@
-package no.jts.android.gameapi.views;
+package no.jts.android.gameapi.screens;
 
+import no.jts.android.gameapi.screenmanager.AbstractScreenManager;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.view.KeyEvent;
@@ -8,9 +9,9 @@ import android.view.MotionEvent;
 public abstract class AbstractScreen {
 
 	protected Activity activity;
-	protected GameScreenManager gameScreenManager;
+	protected AbstractScreenManager gameScreenManager;
 
-	public AbstractScreen(Activity activity, GameScreenManager gameScreenManager){
+	public AbstractScreen(Activity activity, AbstractScreenManager gameScreenManager){
 		this.activity = activity;
 		this.gameScreenManager = gameScreenManager;
 	}

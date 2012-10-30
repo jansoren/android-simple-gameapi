@@ -1,6 +1,5 @@
-package no.jts.android.gameapi.views;
+package no.jts.android.gameapi.screenmanager;
 
-import no.jts.android.gameapi.threads.GameSurfaceThread;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
