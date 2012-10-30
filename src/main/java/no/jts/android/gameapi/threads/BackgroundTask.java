@@ -1,6 +1,5 @@
 package no.jts.android.gameapi.threads;
 
-import no.jts.android.gameapi.types.ScreenType;
 import no.jts.android.gameapi.views.GameScreenManager;
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -19,7 +18,7 @@ public class BackgroundTask extends AsyncTask<Object, Void, Void>{
 
 	@Override
 	protected void onPostExecute(Void result) {
-		gameScreenManager.setScreenInFocus(ScreenType.MENU);
+		gameScreenManager.onPostExecute();
 	}
 
 }
