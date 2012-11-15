@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import no.jts.android.gameapi.screenmanager.AbstractScreenManager;
-import no.jts.android.gameapi.screens.AbstractScreen;
+import no.jts.android.gameapi.screenmanagement.AbstractScreen;
+import no.jts.android.gameapi.screenmanagement.AbstractScreenManager;
 
 public class GameScreen extends AbstractScreen {
 

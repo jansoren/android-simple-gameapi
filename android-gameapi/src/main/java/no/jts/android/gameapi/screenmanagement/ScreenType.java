@@ -1,4 +1,4 @@
-package no.jts.android.gameapi.screens;
+package no.jts.android.gameapi.screenmanagement;
 
 public class ScreenType {
 	public static final String INTRO = "intro";
