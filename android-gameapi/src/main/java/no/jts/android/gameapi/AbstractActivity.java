@@ -5,6 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.KeyEvent;
 
+/**
+ * AbstractActivity is the games activity. 
+ * Extend this and implement an instance of your own AbstractScreenManager.
+ * 
+ * Example:
+ * https://github.com/jansoren/AndroidGameAPI/tree/develop/android-gameapi-example/src/no/jts/android/gameapi/example
+ */
 public abstract class AbstractActivity extends Activity {
 
 	protected AbstractScreenManager gameScreenManager;

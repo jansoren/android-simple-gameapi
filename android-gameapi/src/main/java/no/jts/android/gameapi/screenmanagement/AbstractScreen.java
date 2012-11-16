@@ -5,6 +5,13 @@ import android.graphics.Canvas;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
+/**
+ * AbstractScreen is the view itself.
+ * Extend this class to start implementing your intro, menu and game screen.
+ * 
+ * Example:
+ * https://github.com/jansoren/AndroidGameAPI/tree/develop/android-gameapi-example/src/no/jts/android/gameapi/example
+ */
 public abstract class AbstractScreen {
 
 	protected Activity activity;

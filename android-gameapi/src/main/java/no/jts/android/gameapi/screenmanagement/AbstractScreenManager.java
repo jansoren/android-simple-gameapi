@@ -9,7 +9,16 @@ import android.graphics.Canvas;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
-
+/**
+ * AbstractScreenManager is the engine behind the game. 
+ * Extend this class to:
+ *   - get your game thread running (GameSurfaceThread)
+ *   - get a background task for initializing all your assets (BackgroundTask)
+ *   - manage all your screens (AbstractScreen)
+ *   
+ * Example: 
+ * https://github.com/jansoren/AndroidGameAPI/tree/develop/android-gameapi-example/src/no/jts/android/gameapi/example
+ */
 public abstract class AbstractScreenManager extends GameSurfaceView {
 
 	protected String screenInFocus;
