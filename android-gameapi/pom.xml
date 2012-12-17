@@ -14,9 +14,9 @@
 		<dependency>
 			<groupId>android</groupId>
 			<artifactId>android</artifactId>
-			<version>4</version>
+			<version>7</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/android-4.jar</systemPath>
+			<systemPath>${basedir}/lib/android-7.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

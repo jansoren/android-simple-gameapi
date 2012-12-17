@@ -1,6 +1,6 @@
 package no.jts.android.gameapi.graphics;
 
-import no.jts.android.gameapi.screenmanagement.Globals;
+import no.jts.android.gameapi.setup.Globals;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;

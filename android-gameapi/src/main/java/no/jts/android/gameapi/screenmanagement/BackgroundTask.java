@@ -1,8 +1,8 @@
 package no.jts.android.gameapi.screenmanagement;
 
+import no.jts.android.gameapi.setup.Globals;
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.view.Display;
 
 public class BackgroundTask extends AsyncTask<Object, Void, Void>{
 
@@ -11,8 +11,7 @@ public class BackgroundTask extends AsyncTask<Object, Void, Void>{
 	@Override
 	protected Void doInBackground(Object... params) {
 		Activity activity = (Activity) params[0];
-		Display display = activity.getWindowManager().getDefaultDisplay();
-		Globals.init(display);
+		Globals.init(activity);
 		gameScreenManager = (AbstractScreenManager) params[1];
 		gameScreenManager.doInBackground(activity);
 		return null;
