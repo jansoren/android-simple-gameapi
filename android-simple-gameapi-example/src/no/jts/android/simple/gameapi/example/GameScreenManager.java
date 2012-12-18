@@ -1,7 +1,7 @@
-package no.jts.android.gameapi.example;
+package no.jts.android.simple.gameapi.example;
 
-import no.jts.android.gameapi.screenmanagement.AbstractScreenManager;
-import no.jts.android.gameapi.screenmanagement.ScreenType;
+import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
+import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 import android.app.Activity;
 import android.util.Log;
 

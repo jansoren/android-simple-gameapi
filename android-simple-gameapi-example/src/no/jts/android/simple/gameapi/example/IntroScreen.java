@@ -1,25 +1,25 @@
-package no.jts.android.gameapi.example;
+package no.jts.android.simple.gameapi.example;
 
+import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
+import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import no.jts.android.gameapi.screenmanagement.AbstractScreen;
-import no.jts.android.gameapi.screenmanagement.AbstractScreenManager;
 
-public class MenuScreen extends AbstractScreen {
+public class IntroScreen extends AbstractScreen {
 
-	private static final String TAG = "MenuScreen";
+	private static final String TAG = "IntroScreen";
 	
-	public MenuScreen(Activity activity, AbstractScreenManager gameScreenManager) {
+	public IntroScreen(Activity activity, AbstractScreenManager gameScreenManager) {
 		super(activity, gameScreenManager);
 
 	}
 
 	@Override
 	public void onFocus() {
-		Log.i(TAG, "MenuScreen in focus");
+		Log.i(TAG, "IntroScreen in focus");
 	}
 
 	@Override

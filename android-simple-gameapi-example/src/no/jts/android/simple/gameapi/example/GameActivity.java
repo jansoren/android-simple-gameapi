@@ -1,6 +1,6 @@
-package no.jts.android.gameapi.example;
+package no.jts.android.simple.gameapi.example;
 
-import no.jts.android.gameapi.AbstractActivity;
+import no.jts.android.simple.gameapi.AbstractActivity;
 import android.os.Bundle;
 
 public class GameActivity extends AbstractActivity {
