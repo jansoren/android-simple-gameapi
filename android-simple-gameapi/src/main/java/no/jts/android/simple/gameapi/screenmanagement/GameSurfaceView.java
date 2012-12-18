@@ -1,4 +1,4 @@
-package no.jts.android.gameapi.screenmanagement;
+package no.jts.android.simple.gameapi.screenmanagement;
 
 import android.content.Context;
 import android.graphics.Canvas;

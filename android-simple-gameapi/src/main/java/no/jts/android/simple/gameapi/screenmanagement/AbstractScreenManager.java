@@ -1,8 +1,7 @@
-package no.jts.android.gameapi.screenmanagement;
+package no.jts.android.simple.gameapi.screenmanagement;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 import android.app.Activity;
 import android.graphics.Canvas;

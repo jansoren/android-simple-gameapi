@@ -1,6 +1,6 @@
-package no.jts.android.gameapi.graphics;
+package no.jts.android.simple.gameapi.graphics;
 
-import no.jts.android.gameapi.sound.SoundManager;
+import no.jts.android.simple.gameapi.sound.SoundManager;
 import android.graphics.Bitmap;
 import android.view.MotionEvent;
 

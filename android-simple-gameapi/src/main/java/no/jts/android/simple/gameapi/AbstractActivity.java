@@ -1,6 +1,6 @@
-package no.jts.android.gameapi;
+package no.jts.android.simple.gameapi;
 
-import no.jts.android.gameapi.screenmanagement.AbstractScreenManager;
+import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.KeyEvent;

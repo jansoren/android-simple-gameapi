@@ -1,4 +1,4 @@
-package no.jts.android.gameapi.setup;
+package no.jts.android.simple.gameapi.setup;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,10 +1,9 @@
-package no.jts.android.gameapi.sound;
+package no.jts.android.simple.gameapi.sound;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import no.jts.android.gameapi.setup.Globals;
-
+import no.jts.android.simple.gameapi.setup.Globals;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;

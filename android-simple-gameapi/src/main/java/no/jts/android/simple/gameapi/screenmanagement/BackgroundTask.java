@@ -1,6 +1,6 @@
-package no.jts.android.gameapi.screenmanagement;
+package no.jts.android.simple.gameapi.screenmanagement;
 
-import no.jts.android.gameapi.setup.Globals;
+import no.jts.android.simple.gameapi.setup.Globals;
 import android.app.Activity;
 import android.os.AsyncTask;
 

@@ -1,4 +1,4 @@
-package no.jts.android.gameapi.graphics;
+package no.jts.android.simple.gameapi.graphics;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
