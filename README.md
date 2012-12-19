@@ -1,11 +1,15 @@
-Android Game API
-==============
+# Android Simple Game API
 
 This distribution contains:
- * android-gameapi *
+ ## android-simple-gameapi
    - for getting you startet developing android games.
-   - uses maven to build
+   - uses maven to build or download the jar file listed above.
+   
+   ** Features **
+   - Screenmanagement
+   - Bitmaphandling (Sprite, buttons and text)
+   - Soundmanagement
  
- * android-gameapi-example *
-   - simple examples of the usage of android-gameapi
+ ## android-simple-gameapi-example
+   - simple examples of the usage of android-simple-gameapi
  
