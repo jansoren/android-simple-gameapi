@@ -11,7 +11,12 @@ public class ToggleButton extends AbstractButton {
 		super(bitmap, spriteWidth, spriteHeight);
 		this.isOn = isOn;
 	}
-
+	
+	public ToggleButton(Sprite sprite, boolean isOn) {
+		super(sprite);
+		this.isOn = isOn;
+	}
+	
 	@Override
 	protected void processTouched(MotionEvent event, int fingerIndex) {
 		if(isActionUp(event, fingerIndex)){
