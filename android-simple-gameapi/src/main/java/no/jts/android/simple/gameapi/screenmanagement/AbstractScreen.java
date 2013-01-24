@@ -14,11 +14,9 @@ import android.view.MotionEvent;
  */
 public abstract class AbstractScreen {
 
-	protected Activity activity;
 	protected AbstractScreenManager gameScreenManager;
 
-	public AbstractScreen(Activity activity, AbstractScreenManager gameScreenManager){
-		this.activity = activity;
+	public AbstractScreen(AbstractScreenManager gameScreenManager){
 		this.gameScreenManager = gameScreenManager;
 	}
 

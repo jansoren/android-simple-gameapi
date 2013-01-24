@@ -13,15 +13,15 @@ public class GameScreenManager extends AbstractScreenManager {
 	public GameScreenManager(Activity activity, Setup setup) {
 		super(activity, setup);
 		Log.i(TAG, "Displaying loading screen");
-		screens.put(ScreenType.INTRO, new IntroScreen(activity, this));
+		screens.put(ScreenType.INTRO, new IntroScreen(this));
 		setScreenInFocus(ScreenType.INTRO);
 	}
 
 	@Override
 	public void doInBackground(Activity activity) {
 		Log.i(TAG, "Loading game assets and screens");
-		screens.put(ScreenType.MENU, new MenuScreen(activity, this));
-		screens.put(ScreenType.GAME, new GameScreen(activity, this));
+		screens.put(ScreenType.MENU, new MenuScreen(this));
+		screens.put(ScreenType.GAME, new GameScreen(this));
 	}
 
 	@Override

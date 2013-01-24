@@ -2,7 +2,6 @@ package no.jts.android.simple.gameapi.example;
 
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,8 +11,8 @@ public class IntroScreen extends AbstractScreen {
 
 	private static final String TAG = "IntroScreen";
 	
-	public IntroScreen(Activity activity, AbstractScreenManager gameScreenManager) {
-		super(activity, gameScreenManager);
+	public IntroScreen(AbstractScreenManager gameScreenManager) {
+		super(gameScreenManager);
 
 	}
 
