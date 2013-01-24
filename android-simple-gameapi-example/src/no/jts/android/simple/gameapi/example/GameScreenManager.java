@@ -1,5 +1,6 @@
 package no.jts.android.simple.gameapi.example;
 
+import no.jts.android.simple.gameapi.Setup;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 import android.app.Activity;
@@ -9,8 +10,8 @@ public class GameScreenManager extends AbstractScreenManager {
 
 	private static final String TAG = "GameScreenManager";  
 	
-	public GameScreenManager(Activity activity) {
-		super(activity);
+	public GameScreenManager(Activity activity, Setup setup) {
+		super(activity, setup);
 		Log.i(TAG, "Displaying loading screen");
 		screens.put(ScreenType.INTRO, new IntroScreen(activity, this));
 		setScreenInFocus(ScreenType.INTRO);
