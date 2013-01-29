@@ -11,9 +11,13 @@ public class SpriteUtil {
 		Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, Globals.displayWidth, Globals.displayHeight, true);
 		return new Sprite(scaledBitmap, scaledBitmap.getWidth(), scaledBitmap.getHeight());
 	}
+	
+	public static Sprite createSprite(int id){
+		return createSprite(id, 1, 1);
+	}
 
 	public static Sprite createSprite(int id, int noOfRowFrames, int noOfColumnFrames){
-		Bitmap scaledBitmap = getScaledBitmap(id);
+		Bitmap scaledBitmap = createScaledBitmap(id);
 		return new Sprite(scaledBitmap, scaledBitmap.getWidth() / noOfColumnFrames, scaledBitmap.getHeight() / noOfRowFrames);
 	}
 	
@@ -43,11 +47,10 @@ public class SpriteUtil {
 		return toggleButton;
 	}
 
-	private static Bitmap getScaledBitmap(int id) {
+	public static Bitmap createScaledBitmap(int id) {
 		Bitmap bitmap = BitmapFactory.decodeResource( Globals.resources, id, Globals.options);
 		int scaleToWidth = (int)(Globals.scaleFactorWidth * bitmap.getWidth());
 		int scaleToHeight = (int)(Globals.scaleFactorHeight * bitmap.getHeight());
-		Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaleToWidth, scaleToHeight, true);
-		return scaledBitmap;
+		return Bitmap.createScaledBitmap(bitmap, scaleToWidth, scaleToHeight, true);
 	}
 }
