@@ -1,5 +1,7 @@
 package no.jts.android.simple.gameapi.screenmanagement;
 
+import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,8 @@ import android.app.Activity;
 import android.graphics.Canvas;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 /**
  * AbstractScreenManager is the engine behind the game. 
@@ -24,12 +28,15 @@ public abstract class AbstractScreenManager extends GameSurfaceView {
 
 	protected String screenInFocus;
 	protected Map<String, AbstractScreen> screens = new HashMap<String, AbstractScreen>();
-
+	protected RelativeLayout relativeLayout;
+	
 	public AbstractScreenManager(Activity activity, Setup setup) {
 		super(activity);
 		Globals.init(activity, setup);
 		BackgroundTask backgroundTask = new BackgroundTask();
 		backgroundTask.execute(activity, this);
+		relativeLayout = createRelativeLayout(activity);
+		activity.setContentView( relativeLayout, new FrameLayout.LayoutParams(FILL_PARENT, FILL_PARENT) );
 	}
 
 	public abstract void doInBackground(Activity activity);
@@ -87,5 +94,11 @@ public abstract class AbstractScreenManager extends GameSurfaceView {
 			return getScreenInFocus().onKeyDown(keyCode, event);
 		}
 		return false;		
+	}
+
+	private RelativeLayout createRelativeLayout(Activity activity) {
+		RelativeLayout relativeLayout = new RelativeLayout(activity);
+		relativeLayout.addView(this, 0, new RelativeLayout.LayoutParams(FILL_PARENT, FILL_PARENT));
+		return relativeLayout;
 	}
 }
