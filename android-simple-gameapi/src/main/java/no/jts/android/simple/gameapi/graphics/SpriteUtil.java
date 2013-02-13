@@ -6,12 +6,6 @@ import android.graphics.BitmapFactory;
 
 public class SpriteUtil {
 
-	public static Sprite createBackground(int id) {
-		Bitmap bitmap = BitmapFactory.decodeResource(Globals.resources, id, Globals.options );
-		Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, Globals.displayWidth, Globals.displayHeight, true);
-		return new Sprite(scaledBitmap, scaledBitmap.getWidth(), scaledBitmap.getHeight());
-	}
-	
 	public static Sprite createSprite(int id){
 		return createSprite(id, 1, 1);
 	}
