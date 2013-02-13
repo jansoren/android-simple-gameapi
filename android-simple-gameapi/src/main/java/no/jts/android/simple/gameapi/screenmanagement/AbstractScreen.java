@@ -1,6 +1,5 @@
 package no.jts.android.simple.gameapi.screenmanagement;
 
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
