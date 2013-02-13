@@ -1,6 +1,5 @@
 package no.jts.android.simple.gameapi.example;
 
-import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
 import no.jts.android.simple.gameapi.Setup;
 import no.jts.android.simple.gameapi.example.screens.GameScreen;
 import no.jts.android.simple.gameapi.example.screens.IntroScreen;
@@ -10,7 +9,6 @@ import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 import android.app.Activity;
 import android.util.Log;
-import android.widget.RelativeLayout;
 
 public class GameScreenManager extends AbstractScreenManager {
 

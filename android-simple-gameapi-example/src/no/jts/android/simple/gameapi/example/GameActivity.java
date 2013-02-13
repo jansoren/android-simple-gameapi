@@ -2,7 +2,6 @@ package no.jts.android.simple.gameapi.example;
 
 import no.jts.android.simple.gameapi.AbstractActivity;
 import no.jts.android.simple.gameapi.Setup;
-import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;

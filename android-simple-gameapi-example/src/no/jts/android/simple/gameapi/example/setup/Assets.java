@@ -16,8 +16,7 @@ public class Assets {
 	public static Paint paint;
 	public static Sprite background;
 	public static Button buttonNewGame;
-	
-	
+		
 	public static void init(){
 		paint = createPaint();
 		background = SpriteUtil.createSprite(R.drawable.background);
