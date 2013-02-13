@@ -30,13 +30,13 @@ public class Globals {
 		Log.i(TAG, "Display width: " + displayWidth + " height: " + displayHeight );
 		
 		if(setup.getOriginDesignWidth() != 0){
-			scaleFactorWidth = display.getWidth()/setup.getOriginDesignWidth();
+			scaleFactorWidth = (float)display.getWidth()/(float)setup.getOriginDesignWidth();
 		} else {
 			throw new RuntimeException("You have to set the width of your origin design to get the scaling to work");
 		}
 		
 		if(setup.getOriginDesignHeight() != 0){
-			scaleFactorHeight = display.getHeight()/setup.getOriginDesignHeight();
+			scaleFactorHeight = (float)display.getHeight()/(float)setup.getOriginDesignHeight();
 		} else {
 			throw new RuntimeException("You have to set the height of your origin design to get the scaling to work");
 		}
