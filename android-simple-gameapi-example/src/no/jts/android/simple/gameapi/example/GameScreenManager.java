@@ -10,7 +10,6 @@ import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 import android.app.Activity;
 import android.util.Log;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 public class GameScreenManager extends AbstractScreenManager {
@@ -22,10 +21,6 @@ public class GameScreenManager extends AbstractScreenManager {
 		Log.i(TAG, "Displaying loading screen");
 		screens.put(ScreenType.INTRO, new IntroScreen(this));
 		setScreenInFocus(ScreenType.INTRO);
-		
-		RelativeLayout relativeLayout = getRelativeLayout(activity);
-		activity.setContentView( relativeLayout, new FrameLayout.LayoutParams(FILL_PARENT, FILL_PARENT) );
-		
 	}
 
 	@Override
@@ -40,11 +35,5 @@ public class GameScreenManager extends AbstractScreenManager {
 	public void onPostExecute() {
 		Log.i(TAG, "Loading game finished, set menu in focus");
 		setScreenInFocus(ScreenType.MENU);
-	}
-
-	private RelativeLayout getRelativeLayout(Activity activity) {
-		RelativeLayout relativeLayout = new RelativeLayout(activity);
-		relativeLayout.addView(this, 0, new RelativeLayout.LayoutParams(FILL_PARENT, FILL_PARENT));
-		return relativeLayout;
 	}
 }
