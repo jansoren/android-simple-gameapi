@@ -1,7 +1,11 @@
-package no.jts.android.simple.gameapi.example;
+package no.jts.android.simple.gameapi.example.screens;
 
+import no.jts.android.simple.gameapi.example.setup.Assets;
+import no.jts.android.simple.gameapi.graphics.Sprite;
+import no.jts.android.simple.gameapi.graphics.Text;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
+import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -11,9 +15,15 @@ public class GameScreen extends AbstractScreen {
 
 	private static final String TAG = "GameScreen";
 	
+	private Sprite background;
+	private Text gameEngine;
+	
+	
 	public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
-	
+		background = Assets.background;
+		gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
+		gameEngine.setPositionInPercent(2, 50);
 	}
 
 	@Override
@@ -28,7 +38,8 @@ public class GameScreen extends AbstractScreen {
 
 	@Override
 	public void draw(Canvas canvas) {
-	
+		background.draw(canvas);
+		gameEngine.draw(canvas);
 	}
 
 	@Override
@@ -38,6 +49,10 @@ public class GameScreen extends AbstractScreen {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			gameScreenManager.setScreenInFocus(ScreenType.MENU);
+			return true;
+		}
 		return false;
 	}
 

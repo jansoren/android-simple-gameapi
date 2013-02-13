@@ -1,10 +1,17 @@
 package no.jts.android.simple.gameapi.example;
 
+import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
 import no.jts.android.simple.gameapi.Setup;
+import no.jts.android.simple.gameapi.example.screens.GameScreen;
+import no.jts.android.simple.gameapi.example.screens.IntroScreen;
+import no.jts.android.simple.gameapi.example.screens.MenuScreen;
+import no.jts.android.simple.gameapi.example.setup.Assets;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 import android.app.Activity;
 import android.util.Log;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 public class GameScreenManager extends AbstractScreenManager {
 
@@ -15,11 +22,16 @@ public class GameScreenManager extends AbstractScreenManager {
 		Log.i(TAG, "Displaying loading screen");
 		screens.put(ScreenType.INTRO, new IntroScreen(this));
 		setScreenInFocus(ScreenType.INTRO);
+		
+		RelativeLayout relativeLayout = getRelativeLayout(activity);
+		activity.setContentView( relativeLayout, new FrameLayout.LayoutParams(FILL_PARENT, FILL_PARENT) );
+		
 	}
 
 	@Override
 	public void doInBackground(Activity activity) {
 		Log.i(TAG, "Loading game assets and screens");
+		Assets.init();
 		screens.put(ScreenType.MENU, new MenuScreen(this));
 		screens.put(ScreenType.GAME, new GameScreen(this));
 	}
@@ -30,4 +42,9 @@ public class GameScreenManager extends AbstractScreenManager {
 		setScreenInFocus(ScreenType.MENU);
 	}
 
+	private RelativeLayout getRelativeLayout(Activity activity) {
+		RelativeLayout relativeLayout = new RelativeLayout(activity);
+		relativeLayout.addView(this, 0, new RelativeLayout.LayoutParams(FILL_PARENT, FILL_PARENT));
+		return relativeLayout;
+	}
 }

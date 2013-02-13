@@ -1,5 +1,10 @@
-package no.jts.android.simple.gameapi.example;
+package no.jts.android.simple.gameapi.example.screens;
 
+import no.jts.android.simple.gameapi.example.R;
+import no.jts.android.simple.gameapi.example.setup.Assets;
+import no.jts.android.simple.gameapi.graphics.Sprite;
+import no.jts.android.simple.gameapi.graphics.SpriteUtil;
+import no.jts.android.simple.gameapi.graphics.Text;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import android.graphics.Canvas;
@@ -11,9 +16,14 @@ public class IntroScreen extends AbstractScreen {
 
 	private static final String TAG = "IntroScreen";
 	
+	private Sprite background;
+	private Text loading;
+	
 	public IntroScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
-
+		background = SpriteUtil.createSprite(R.drawable.background);
+		loading = new Text(Assets.createPaint(), "Loading...", 0);
+		loading.setPositionInPercent(39, 50);
 	}
 
 	@Override
@@ -28,7 +38,8 @@ public class IntroScreen extends AbstractScreen {
 
 	@Override
 	public void draw(Canvas canvas) {
-	
+		background.draw(canvas);
+		loading.draw(canvas);
 	}
 
 	@Override
