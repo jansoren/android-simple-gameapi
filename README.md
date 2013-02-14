@@ -13,11 +13,10 @@ This distribution contains:
 ## android-simple-gameapi-example
    - simple examples of the usage of android-simple-gameapi
 
-## Google Play
-Games using the API is:
-	- Reversi Paper Blobs Free 	https://play.google.com/store/apps/details?id=com.machinegames.othello
-	- Reversi Paper Blobs 		https://play.google.com/store/apps/details?id=com.machinegames.othello.paid
-	- Raindrop 					https://play.google.com/store/apps/details?id=com.arconegames.raindrop
+## Games using the API on Google Play:
+   - Reversi Paper Blobs Free 	https://play.google.com/store/apps/details?id=com.machinegames.othello
+   - Reversi Paper Blobs 		https://play.google.com/store/apps/details?id=com.machinegames.othello.paid
+   - Raindrop 					https://play.google.com/store/apps/details?id=com.arconegames.raindrop
    
 # How to get started using example
 
