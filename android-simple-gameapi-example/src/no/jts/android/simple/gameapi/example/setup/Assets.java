@@ -1,5 +1,6 @@
 package no.jts.android.simple.gameapi.example.setup;
 
+import no.jts.android.simple.gameapi.cache.Cache;
 import no.jts.android.simple.gameapi.example.R;
 import no.jts.android.simple.gameapi.graphics.Button;
 import no.jts.android.simple.gameapi.graphics.Sprite;
@@ -19,8 +20,8 @@ public class Assets {
 		
 	public static void init(){
 		paint = createPaint();
-		background = SpriteUtil.createSprite(R.drawable.background);
-		buttonNewGame = SpriteUtil.createButton(R.drawable.button_new_game);
+		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
+		buttonNewGame = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
 	}
 	
 	public static Paint createPaint(){
