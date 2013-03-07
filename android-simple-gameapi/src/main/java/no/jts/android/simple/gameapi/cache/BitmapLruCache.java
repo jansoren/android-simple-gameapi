@@ -5,7 +5,7 @@ import android.support.v4.util.LruCache;
 import android.util.Log;
 
 public class BitmapLruCache extends LruCache<Integer, Bitmap> {
-	private static final String TAG = "Cache";
+	private static final String TAG = "BitmapLruCache";
 	private final static int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 	private final static int cacheSize = maxMemory / 2;
 	
@@ -17,8 +17,7 @@ public class BitmapLruCache extends LruCache<Integer, Bitmap> {
 
 	@Override
 	protected int sizeOf(Integer key, Bitmap bitmap) {
-		// The cache size will be measured in kilobytes rather than
-		// number of items.
+		// The cache size will be measured in kilobytes rather than number of items.
 		return bitmap.getRowBytes() * bitmap.getHeight() / 1024;
 	}
 }
