@@ -1,5 +1,6 @@
 package no.jts.android.simple.gameapi.example.screens;
 
+import no.jts.android.simple.gameapi.cache.Cache;
 import no.jts.android.simple.gameapi.example.R;
 import no.jts.android.simple.gameapi.example.setup.Assets;
 import no.jts.android.simple.gameapi.graphics.Sprite;
@@ -21,7 +22,7 @@ public class IntroScreen extends AbstractScreen {
 	
 	public IntroScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
-		background = SpriteUtil.createSprite(R.drawable.background);
+		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
 		loading = new Text(Assets.createPaint(), "Loading...", 0);
 		loading.setPositionInPercent(39, 50);
 	}

@@ -1,10 +1,5 @@
 package no.jts.android.simple.gameapi.example.setup;
 
-import no.jts.android.simple.gameapi.cache.Cache;
-import no.jts.android.simple.gameapi.example.R;
-import no.jts.android.simple.gameapi.graphics.Button;
-import no.jts.android.simple.gameapi.graphics.Sprite;
-import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,13 +10,9 @@ public class Assets {
 	private static final float GESTURE_THRESHOLD_DIP = 22.0f;
 	
 	public static Paint paint;
-	public static Sprite background;
-	public static Button buttonNewGame;
 		
 	public static void init(){
 		paint = createPaint();
-		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
-		buttonNewGame = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
 	}
 	
 	public static Paint createPaint(){

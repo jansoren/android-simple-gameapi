@@ -1,8 +1,10 @@
 package no.jts.android.simple.gameapi.example.screens;
 
-import no.jts.android.simple.gameapi.example.setup.Assets;
+import no.jts.android.simple.gameapi.cache.Cache;
+import no.jts.android.simple.gameapi.example.R;
 import no.jts.android.simple.gameapi.graphics.Button;
 import no.jts.android.simple.gameapi.graphics.Sprite;
+import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
@@ -20,8 +22,8 @@ public class MenuScreen extends AbstractScreen {
 	
 	public MenuScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
-		background = Assets.background;
-		buttonNewGame = Assets.buttonNewGame;
+		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
+		buttonNewGame = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
 		buttonNewGame.setPositionInPercent(50, 80);
 	}
 

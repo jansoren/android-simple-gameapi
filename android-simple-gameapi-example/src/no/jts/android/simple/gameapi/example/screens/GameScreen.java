@@ -1,7 +1,10 @@
 package no.jts.android.simple.gameapi.example.screens;
 
+import no.jts.android.simple.gameapi.cache.Cache;
+import no.jts.android.simple.gameapi.example.R;
 import no.jts.android.simple.gameapi.example.setup.Assets;
 import no.jts.android.simple.gameapi.graphics.Sprite;
+import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.graphics.Text;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
@@ -17,11 +20,10 @@ public class GameScreen extends AbstractScreen {
 	
 	private Sprite background;
 	private Text gameEngine;
-	
-	
+		
 	public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
-		background = Assets.background;
+		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
 		gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
 		gameEngine.setPositionInPercent(2, 50);
 	}
