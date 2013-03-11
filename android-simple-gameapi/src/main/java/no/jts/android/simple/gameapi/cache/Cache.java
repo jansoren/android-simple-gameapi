@@ -1,7 +1,5 @@
 package no.jts.android.simple.gameapi.cache;
 
-import java.lang.reflect.Field;
-
 import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
