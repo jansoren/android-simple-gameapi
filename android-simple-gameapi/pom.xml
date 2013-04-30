@@ -11,11 +11,10 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>android</groupId>
+			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>9</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/android-9.jar</systemPath>
+			<version>2.3.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.android</groupId>
