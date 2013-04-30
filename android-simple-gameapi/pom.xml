@@ -5,7 +5,32 @@
 	<artifactId>android-simple-gameapi</artifactId>
 	<version>1.0.2</version>
 	<packaging>jar</packaging>
-	<name>android-simple-gameapi</name>
+	<name>Android Simple Game API</name>
+	<url>https://github.com/jansoren/android-simple-gameapi</url>
+	<description>Android Simple Game API is to make it simpler to develop android games</description>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/jansoren/android-simple-gameapi/issues</url>
+	</issueManagement>
+	<scm>
+        <connection>scm:git:git@github.com:jansoren/android-simple-gameapi.git</connection>
+        <developerConnection>scm:git:git@github.com:jansoren/android-simple-gameapi.git</developerConnection>
+        <url>https://github.com/jansoren/android-simple-gameapi</url>
+    </scm>
+	<developers>
+        <developer>
+            <id>jansoren</id>
+            <name>Jan-Terje Sørensen</name>
+            <email>jtbsorensen@gmail.com</email>
+        </developer>
+    </developers>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -55,7 +80,7 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
-					<encoding>UTF-8</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
