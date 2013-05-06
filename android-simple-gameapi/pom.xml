@@ -13,10 +13,10 @@
 		<url>https://github.com/jansoren/android-simple-gameapi/issues</url>
 	</issueManagement>
 	<scm>
-        <connection>scm:git:git@github.com:jansoren/android-simple-gameapi.git</connection>
-        <developerConnection>scm:git:git@github.com:jansoren/android-simple-gameapi.git</developerConnection>
-        <url>https://github.com/jansoren/android-simple-gameapi</url>
-    </scm>
+		<connection>scm:git:git@github.com:jansoren/android-simple-gameapi.git</connection>
+		<developerConnection>scm:git:git@github.com:jansoren/android-simple-gameapi.git</developerConnection>
+		<url>https://github.com/jansoren/android-simple-gameapi</url>
+	</scm>
 	<developers>
         <developer>
             <id>jansoren</id>
@@ -50,6 +50,12 @@
 			<groupId>org.jbox2d</groupId>
 			<artifactId>jbox2d-library</artifactId>
 			<version>2.2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
