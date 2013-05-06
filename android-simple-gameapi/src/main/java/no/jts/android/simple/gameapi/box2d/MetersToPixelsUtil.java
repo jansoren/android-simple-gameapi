@@ -8,21 +8,18 @@ public class MetersToPixelsUtil {
 	
 	private static final String TAG = "MetersToPixelsUtil";
 	
-	public static Vec2[] metersToPixels(Vec2[] meters, float mtp_ratio, int displayCenterX, int displayCenterY){
-		Vec2[] pixels = new Vec2[meters.length];
-		for(int i=0; i < meters.length; i++){
-			pixels[i] = metersToPixels(meters[i], mtp_ratio, displayCenterX, displayCenterY);
+	public static Vec2[] metersToPixels(Vec2[] meters, int size){
+		Vec2[] pixels = new Vec2[size];
+		for(int i=0; i < size; i++){
+			pixels[i] = metersToPixels(meters[i]);
 		}
 		return pixels;
 	}
 	
-	public static Vec2 metersToPixels(Vec2 meters, float mtp_ratio, int displayCenterX, int displayCenterY){
-		float x = (meters.x * mtp_ratio) + displayCenterX + 1;
-		float revertedY = ((-1 * meters.y) * mtp_ratio) + displayCenterY; // revert y to convert from box2d coordinatesystem to display coordinatesystem
-		Vec2 pixels = new Vec2(x, revertedY);
-		//Log.i(TAG, "x - meters: " + meters.x + " pixels: " + pixels.x);
-		//Log.i(TAG, "y - meters: " + meters.y + " pixels: " + pixels.y);
-		return pixels;
+	public static Vec2 metersToPixels(Vec2 meters){
+		float x = (meters.x * WorldGlobals.mtp_ratio) + WorldGlobals.displayCenterX;
+		float y = (-1 * meters.y * WorldGlobals.mtp_ratio) + WorldGlobals.displayCenterY; 
+		return new Vec2(x, y);
 	}
 		
 	public static void log(Vec2[] vec2){

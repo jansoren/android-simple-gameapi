@@ -3,16 +3,16 @@ package no.jts.android.simple.gameapi.box2d;
 import no.jts.android.simple.gameapi.setup.Globals;
 
 public class WorldGlobals {
-	public static int centerX;
-	public static int centerY;
+	public static int displayCenterX;
+	public static int displayCenterY;
 	public static float mtp_ratio; // meter to pixel ratio
 	public static float worldHeight = 10.0f;
 	public static float worldWidth = 6.0f;
 
 	public static void init(){
 		mtp_ratio = getPtmRatio();
-		centerX = Globals.displayWidth / 2;
-	    centerY = Globals.displayHeight / 2;
+		displayCenterX = Globals.displayWidth / 2;
+	    displayCenterY = Globals.displayHeight / 2;
 	}
 	
 	private static float getPtmRatio() {
@@ -22,6 +22,6 @@ public class WorldGlobals {
 	    } else {
 	    	return (Globals.displayWidth / WORLD_SIZE);
 	    }*/
-		return Globals.displayHeight / worldHeight;	    
+		return (Globals.displayHeight / worldHeight) / 2;	    
 	}
 }
