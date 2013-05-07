@@ -23,7 +23,7 @@ public class MetersToPixelsUtilTest {
 	@Test
 	public void testShouldConvertMetersOriginToPixels(){
 		Vec2 meters = new Vec2(0,0);
-		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters);
+		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters, null);
 		assertEquals(240, pixels.x, 0.1);
 		assertEquals(400, pixels.y, 0.1);
 	}
@@ -31,7 +31,7 @@ public class MetersToPixelsUtilTest {
 	@Test
 	public void testShouldConvertMetersLeftToPixels(){
 		Vec2 meters = new Vec2(-WorldGlobals.worldWidth,0);
-		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters);
+		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters, null);
 		assertEquals(0, pixels.x, 0.1);
 		assertEquals(400, pixels.y, 0.1);
 	}
@@ -39,7 +39,7 @@ public class MetersToPixelsUtilTest {
 	@Test
 	public void testShouldConvertMetersBottomToPixels(){
 		Vec2 meters = new Vec2(0,-WorldGlobals.worldHeight);
-		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters);
+		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters, null);
 		assertEquals(240, pixels.x, 0.1);
 		assertEquals(800, pixels.y, 0.1);
 	}
@@ -47,7 +47,7 @@ public class MetersToPixelsUtilTest {
 	@Test
 	public void testShouldConvertMetersRightToPixels(){
 		Vec2 meters = new Vec2(WorldGlobals.worldWidth,0);
-		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters);
+		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters, null);
 		assertEquals(480, pixels.x, 0.1);
 		assertEquals(400, pixels.y, 0.1);
 	}
@@ -55,7 +55,7 @@ public class MetersToPixelsUtilTest {
 	@Test
 	public void testShouldConvertMetersTopToPixels(){
 		Vec2 meters = new Vec2(0, WorldGlobals.worldHeight);
-		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters);
+		Vec2 pixels = MetersToPixelsUtil.metersToPixels(meters, null);
 		assertEquals(240, pixels.x, 0.1);
 		assertEquals(0, pixels.y, 0.1);
 	}

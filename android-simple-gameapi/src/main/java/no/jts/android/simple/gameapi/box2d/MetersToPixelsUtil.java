@@ -8,17 +8,17 @@ public class MetersToPixelsUtil {
 	
 	private static final String TAG = "MetersToPixelsUtil";
 	
-	public static Vec2[] metersToPixels(Vec2[] meters, int size){
+	public static Vec2[] metersToPixels(Vec2[] meters, int size, Vec2 position){
 		Vec2[] pixels = new Vec2[size];
 		for(int i=0; i < size; i++){
-			pixels[i] = metersToPixels(meters[i]);
+			pixels[i] = metersToPixels(meters[i], position);
 		}
 		return pixels;
 	}
 	
-	public static Vec2 metersToPixels(Vec2 meters){
-		float x = (meters.x * WorldGlobals.mtp_ratio) + WorldGlobals.displayCenterX;
-		float y = (-1 * meters.y * WorldGlobals.mtp_ratio) + WorldGlobals.displayCenterY; 
+	public static Vec2 metersToPixels(Vec2 meters, Vec2 position){
+		float x = ((meters.x + position.x) * WorldGlobals.mtp_ratio) + WorldGlobals.displayCenterX;
+		float y = (-1 * (meters.y + position.y) * WorldGlobals.mtp_ratio) + WorldGlobals.displayCenterY; 
 		return new Vec2(x, y);
 	}
 		
