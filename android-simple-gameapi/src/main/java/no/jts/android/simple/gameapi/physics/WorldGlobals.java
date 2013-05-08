@@ -6,8 +6,8 @@ public class WorldGlobals {
 	public static int displayCenterX;
 	public static int displayCenterY;
 	public static float mtp_ratio; // meter to pixel ratio
-	public static float worldHeight = 10.0f;
-	public static float worldWidth = 6.0f;
+	public static float worldHeight;
+	public static float worldWidth;
 
 	public static void init(float worldSize){
 		mtp_ratio = getPtmRatio(worldSize);
