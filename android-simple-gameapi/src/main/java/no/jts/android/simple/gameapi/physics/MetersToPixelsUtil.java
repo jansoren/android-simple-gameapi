@@ -1,6 +1,5 @@
 package no.jts.android.simple.gameapi.physics;
 
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Transform;
 import org.jbox2d.common.Vec2;
 
@@ -13,9 +12,9 @@ public class MetersToPixelsUtil {
 	 * @param angle
 	 * @return
 	 */
-	public static Vec2[] convertPolygon(PolygonShape shape, Vec2 position, float angle){
-		Vec2[] meters = transform(shape, angle);
-		Vec2[] pixels = convertVectors(shape, position, meters);
+	public static Vec2[] convertPolygon(Vec2[] vertices, int vertexCount, Vec2 position, float angle){
+		Vec2[] meters = transform(vertices, vertexCount, angle);
+		Vec2[] pixels = convertVectors(meters, vertexCount, position);
 		return pixels;
 	}
 
@@ -46,22 +45,20 @@ public class MetersToPixelsUtil {
 		return ( -1 * getPixels(position.y) ) + WorldGlobals.displayCenterY;
 	}
 
-	private static Vec2[] convertVectors(PolygonShape shape, Vec2 position, Vec2[] meters) {
-		int size = shape.getVertexCount();
-		Vec2[] pixels = new Vec2[size];
-		for(int i=0; i < size; i++){
+	private static Vec2[] convertVectors(Vec2[] meters, int vertexCount, Vec2 position) {
+		Vec2[] pixels = new Vec2[vertexCount];
+		for(int i=0; i < vertexCount; i++){
 			pixels[i] = convertVector(meters[i], position);
 		}
 		return pixels;
 	}
 
-	private static Vec2[] transform(PolygonShape shape, float angle) {
-		int size = shape.getVertexCount();
-		Vec2[] meters = new Vec2[size];
+	private static Vec2[] transform(Vec2[] vertices, int vertexCount, float angle) {
+		Vec2[] meters = new Vec2[vertexCount];
 		Transform transform = new Transform();
 		transform.set(new Vec2(0, 0), angle);
-		for (int i = 0; i < size; ++i){
-			meters[i] = Transform.mul(transform, shape.getVertex(i));
+		for (int i = 0; i < vertexCount; ++i){
+			meters[i] = Transform.mul(transform, vertices[i]);
 		}
 		return meters;
 	}
