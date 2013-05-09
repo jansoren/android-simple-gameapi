@@ -14,8 +14,9 @@ public class MetersToPixelsUtil {
 	 */
 	public static Vec2[] convertPolygon(Vec2[] vertices, int vertexCount, Vec2 position, float angle){
 		Vec2[] meters = transform(vertices, vertexCount, angle);
-		Vec2[] pixels = convertVectors(meters, vertexCount, position);
-		return pixels;
+		Vec2[] pixels = convertVectors(meters, vertexCount);
+		Vec2[] positionedPixels = updatePosition(pixels, vertexCount, position);
+		return positionedPixels;
 	}
 
 	/**
@@ -45,14 +46,6 @@ public class MetersToPixelsUtil {
 		return ( -1 * getPixels(position.y) ) + WorldGlobals.displayCenterY;
 	}
 
-	private static Vec2[] convertVectors(Vec2[] meters, int vertexCount, Vec2 position) {
-		Vec2[] pixels = new Vec2[vertexCount];
-		for(int i=0; i < vertexCount; i++){
-			pixels[i] = convertVector(meters[i], position);
-		}
-		return pixels;
-	}
-
 	private static Vec2[] transform(Vec2[] vertices, int vertexCount, float angle) {
 		Vec2[] meters = new Vec2[vertexCount];
 		Transform transform = new Transform();
@@ -63,12 +56,28 @@ public class MetersToPixelsUtil {
 		return meters;
 	}
 
-	private static Vec2 convertVector(Vec2 meters, Vec2 position){
-		float x = convertPositionX(position) + getPixels(meters.x);
-		float y = convertPositionY(position) + (-1 * getPixels(meters.y));
+	private static Vec2[] convertVectors(Vec2[] meters, int vertexCount) {
+		Vec2[] pixels = new Vec2[vertexCount];
+		for(int i=0; i < vertexCount; i++){
+			pixels[i] = convertVector(meters[i]);
+		}
+		return pixels;
+	}
+	
+	private static Vec2 convertVector(Vec2 meters){
+		float x = getPixels(meters.x);
+		float y = (-1 * getPixels(meters.y));
 		return new Vec2(x, y);
 	}
-
+	
+	private static Vec2[] updatePosition(Vec2[] pixels, int vertexCount, Vec2 position) {
+		for(int i=0; i < vertexCount; i++){
+			pixels[i].x = pixels[i].x + convertPositionX(position);
+			pixels[i].y = pixels[i].y + convertPositionY(position);
+		}
+		return pixels;
+	}
+	
 	private static float getPixels(float meters){
 		return meters * WorldGlobals.mtp_ratio;
 	}
