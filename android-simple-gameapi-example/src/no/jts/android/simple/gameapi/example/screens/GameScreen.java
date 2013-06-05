@@ -1,11 +1,18 @@
 package no.jts.android.simple.gameapi.example.screens;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.FixtureDef;
+
 import no.jts.android.simple.gameapi.cache.Cache;
 import no.jts.android.simple.gameapi.example.R;
 import no.jts.android.simple.gameapi.example.setup.Assets;
 import no.jts.android.simple.gameapi.graphics.Sprite;
 import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.graphics.Text;
+import no.jts.android.simple.gameapi.physics.PhysicsWorld;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
@@ -20,6 +27,7 @@ public class GameScreen extends AbstractScreen {
 	
 	private Sprite background;
 	private Text gameEngine;
+	private PhysicsWorld physicsWorld;
 		
 	public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
@@ -31,17 +39,28 @@ public class GameScreen extends AbstractScreen {
 	@Override
 	public void onFocus() {
 		Log.i(TAG, "GameScreen in focus");
+		physicsWorld = new PhysicsWorld(10, 0, -10, Assets.paint);
+		physicsWorld.addGround();
+		physicsWorld.addWallLeft();
+		physicsWorld.addWallRight();
+		physicsWorld.addRoof();
+		physicsWorld.addRectangle(1, 1, -1.5f, 1.5f, createFixtureDef(), true);
+		physicsWorld.addRectangle(1, 1, -1.5f, 5.5f, createFixtureDef(), true);
+		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
+		physicsWorld.addCircle(1, 0, 1, createFixtureDef(), true);
+		physicsWorld.addCircle(-1, -1, 0.5f, createFixtureDef(), true);
 	}
 
 	@Override
 	public void update(float deltaTime) {
-	
+		physicsWorld.update(deltaTime);
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
 		background.draw(canvas);
 		gameEngine.draw(canvas);
+		physicsWorld.draw(canvas);
 	}
 
 	@Override
@@ -63,4 +82,21 @@ public class GameScreen extends AbstractScreen {
 	
 	}
 
+	private FixtureDef createFixtureDef() {
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.density = 1.0f;
+		fixtureDef.friction = 0.3f;   
+		fixtureDef.restitution = 0.7f;
+		return fixtureDef;
+	}
+	
+	private List<Vec2> createPolygon() {
+		List<Vec2> vertices = new ArrayList<Vec2>();
+		vertices.add(new Vec2(-1, 0));
+		vertices.add(new Vec2(-0.5f, -0.5f));
+		vertices.add(new Vec2(0, -1));
+		vertices.add(new Vec2(0.5f, -0.5f));
+		vertices.add(new Vec2(1,1));
+		return vertices;
+	}
 }
