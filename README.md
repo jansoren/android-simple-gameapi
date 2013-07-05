@@ -37,6 +37,12 @@ This distribution contains:
 7. The `android-simple-gameapi` - project should be selected -> Finish
 
 ## Setup android simple gameapi example
+1. Download Gradle `http://www.gradle.org/get-started`
+2. Set environment variable `GRADLE_HOME=C:\...\gradle-1.6` and `ANDROID_HOME=C:\...\android-sdk`
+3. Set/dobbelcheck path variable `PATH=...;%GRADLE_HOME%\bin;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools`
+4. // TODO: waiting for a way to build eclipse project files using gradle
+
+# Alternative method for implementing project 
 1. Import using `Git -> Projects from Git`
 2. Select your `c:\github\android-simple-gameapi` folder -> Next
 3. Select `Use the New Project wizard` -> Finish

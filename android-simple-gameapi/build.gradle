@@ -1,0 +1,23 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:0.4.3'
+	}
+}
+
+apply plugin: 'java'
+
+version = '1.0.2'
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'com.google.android:android:2.3.1'
+	compile 'com.google.android:support-v4:r7'
+	compile 'org.jbox2d:jbox2d-library:2.2.1.1'
+	
+	testCompile  'junit:junit:4.11'
+}

@@ -3,3 +3,7 @@
 /bin/
 /.settings/
 /target/
+/.idea/
+/*.iml
+/build/
+/.gradle/
