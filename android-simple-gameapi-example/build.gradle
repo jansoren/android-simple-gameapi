@@ -3,13 +3,14 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:0.4.3'
+		classpath 'com.android.tools.build:gradle:0.5.0'
 	}
 }
 
 apply plugin: 'android'
+apply plugin: 'eclipse'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.6
 version = '1.0.2'
 
 repositories {
