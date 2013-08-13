@@ -29,14 +29,12 @@ public class GameScreen extends AbstractScreen {
 	private Sprite background;
 	private Text gameEngine;
 	private PhysicsWorld physicsWorld;
-    private Sprite sprite;
-		
+    	
 	public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
 		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
 		gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
 		gameEngine.setPositionInPercent(2, 50);
-        sprite = SpriteUtil.createSprite(SpriteUtil.createScaledBitmap(R.drawable.button_new_game), 1, 2);
 	}
 
 	@Override
@@ -52,7 +50,9 @@ public class GameScreen extends AbstractScreen {
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
 		physicsWorld.addCircle(1, 0, 1, createFixtureDef(), true);
 		physicsWorld.addCircle(-1, -1, 0.5f, createFixtureDef(), true);
-        physicsWorld.addSprite(sprite, createFixtureDef(), true);
+		
+		Sprite sprite = SpriteUtil.createSprite(SpriteUtil.createScaledBitmap(R.drawable.button_new_game), 1, 2);
+		physicsWorld.addSprite(sprite, createFixtureDef(), true);
 	}
 
 	@Override
@@ -65,7 +65,6 @@ public class GameScreen extends AbstractScreen {
 		background.draw(canvas);
 		gameEngine.draw(canvas);
 		physicsWorld.draw(canvas);
-        sprite.draw(canvas);
 	}
 
 	@Override
