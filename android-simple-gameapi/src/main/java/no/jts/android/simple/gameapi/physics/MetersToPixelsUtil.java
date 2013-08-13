@@ -7,10 +7,11 @@ public class MetersToPixelsUtil {
 
 	/**
 	 * Converts meters to pixels for polygon vectors
-	 * @param shape
-	 * @param position
+	 * @param vertices
+     * @param vertexCount
+     * @param position
 	 * @param angle
-	 * @return
+	 * @return positions in pixels
 	 */
 	public static Vec2[] convertPolygon(Vec2[] vertices, int vertexCount, Vec2 position, float angle){
 		Vec2[] meters = transform(vertices, vertexCount, angle);
@@ -21,8 +22,8 @@ public class MetersToPixelsUtil {
 
 	/**
 	 * Converts meters to pixels for radius
-	 * @param shape
-	 * @return
+	 * @param radius
+	 * @return radius in pixels
 	 */
 	public static float convertRadius(float radius) {
 		return getPixels(radius);
@@ -31,7 +32,7 @@ public class MetersToPixelsUtil {
 	/**
 	 * Converts meters to pixels for position X
 	 * @param position
-	 * @return
+	 * @return position x in pixels
 	 */
 	public static float convertPositionX(Vec2 position) {
 		return getPixels(position.x) + WorldGlobals.displayCenterX ;
@@ -40,7 +41,7 @@ public class MetersToPixelsUtil {
 	/**
 	 * Converts meters to pixels for position Y
 	 * @param position 
-	 * @return
+	 * @return position y in pixels
 	 */
 	public static float convertPositionY(Vec2 position) {
 		return ( -1 * getPixels(position.y) ) + WorldGlobals.displayCenterY;
@@ -81,5 +82,4 @@ public class MetersToPixelsUtil {
 	private static float getPixels(float meters){
 		return meters * WorldGlobals.mtp_ratio;
 	}
-
 }

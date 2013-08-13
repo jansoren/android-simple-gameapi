@@ -13,8 +13,13 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import android.R;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
+import no.jts.android.simple.gameapi.cache.Cache;
+import no.jts.android.simple.gameapi.graphics.Sprite;
+import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 
 public class PhysicsWorld {
 
@@ -145,7 +150,15 @@ public class PhysicsWorld {
 		bodyDef.position.set(posX, posY);
 		world.createBody(bodyDef).createFixture(fixtureDef);
 	}
-	
+
+    public void addSprite(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
+        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
+        float height = PixelsToMetersUtil.getMeters(sprite.getSpriteHeight()) / 2f ;
+        float posX = PixelsToMetersUtil.getMeters(sprite.getX());
+        float posY = ( -1 * PixelsToMetersUtil.getMeters(sprite.getY()) );
+        addRectangle(width, height, posX, posY, fixtureDef, isDynamic);
+    }
+
 	private void addConstraint(float width, float height, float posX, float posY) {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);

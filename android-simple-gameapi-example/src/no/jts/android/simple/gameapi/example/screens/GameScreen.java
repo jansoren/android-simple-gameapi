@@ -13,6 +13,7 @@ import no.jts.android.simple.gameapi.graphics.Sprite;
 import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.graphics.Text;
 import no.jts.android.simple.gameapi.physics.PhysicsWorld;
+import no.jts.android.simple.gameapi.physics.PixelsToMetersUtil;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
@@ -28,12 +29,14 @@ public class GameScreen extends AbstractScreen {
 	private Sprite background;
 	private Text gameEngine;
 	private PhysicsWorld physicsWorld;
+    private Sprite sprite;
 		
 	public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
 		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
 		gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
 		gameEngine.setPositionInPercent(2, 50);
+        sprite = SpriteUtil.createSprite(SpriteUtil.createScaledBitmap(R.drawable.button_new_game), 1, 2);
 	}
 
 	@Override
@@ -45,10 +48,11 @@ public class GameScreen extends AbstractScreen {
 		physicsWorld.addWallRight();
 		physicsWorld.addRoof();
 		physicsWorld.addRectangle(1, 1, -1.5f, 1.5f, createFixtureDef(), true);
-		physicsWorld.addRectangle(1, 1, -1.5f, 5.5f, createFixtureDef(), true);
+		physicsWorld.addRectangle(0.5f, 1.5f, -1.5f, 5.5f, true);
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
 		physicsWorld.addCircle(1, 0, 1, createFixtureDef(), true);
 		physicsWorld.addCircle(-1, -1, 0.5f, createFixtureDef(), true);
+        physicsWorld.addSprite(sprite, createFixtureDef(), true);
 	}
 
 	@Override
@@ -61,6 +65,7 @@ public class GameScreen extends AbstractScreen {
 		background.draw(canvas);
 		gameEngine.draw(canvas);
 		physicsWorld.draw(canvas);
+        sprite.draw(canvas);
 	}
 
 	@Override
