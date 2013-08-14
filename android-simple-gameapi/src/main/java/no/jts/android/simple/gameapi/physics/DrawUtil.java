@@ -38,10 +38,7 @@ public class DrawUtil {
         if(userData != null) {
             if(userData instanceof Sprite){
                 Sprite sprite = (Sprite)userData;
-                Bitmap bitmap = sprite.getBitmap();
-
-                Matrix matrix = transform(bitmap, body.getPosition(), body.getAngle());
-                canvas.drawBitmap(bitmap, matrix, null);
+                sprite.draw(canvas, body.getPosition(), body.getAngle());
             }
         }
 
@@ -59,17 +56,4 @@ public class DrawUtil {
 			canvas.drawLine(pixels[last].x, pixels[last].y, pixels[0].x, pixels[0].y, paint);
 		}
 	}
-
-    private static Matrix transform(Bitmap bitmap, Vec2 position, float angle) {
-        float x = MetersToPixelsUtil.convertPositionX(position);
-        float y = MetersToPixelsUtil.convertPositionY(position);
-        float degrees = -1 * (float)Math.toDegrees(angle);
-
-        Matrix matrix = new Matrix();
-        matrix.postTranslate(-bitmap.getWidth() / 2f, -bitmap.getHeight() / 2f); // Centers image
-        matrix.postRotate(degrees);
-        matrix.postTranslate(x, y);
-        return matrix;
-    }
-
 }

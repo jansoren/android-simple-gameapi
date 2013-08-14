@@ -1,10 +1,14 @@
 package no.jts.android.simple.gameapi.graphics;
 
+import no.jts.android.simple.gameapi.physics.MetersToPixelsUtil;
 import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+
+import org.jbox2d.common.Vec2;
 
 public class Sprite extends Position{
 
@@ -77,6 +81,15 @@ public class Sprite extends Position{
 		}
 	}
 
+    public void draw(Canvas canvas, Vec2 position, float angle){
+        if(canvas != null && bitmap != null && isVisible){
+            Matrix matrix = transform(position, angle);
+            canvas.setMatrix(matrix);
+            draw(canvas);
+            canvas.restore();
+        }
+    }
+
 	public boolean isTouched(float touchX, float touchY){
 		return isTouchedX(touchX) && isTouchedY(touchY);
 	}
@@ -132,4 +145,16 @@ public class Sprite extends Position{
 		}
 		return isTouchedX;
 	}
+
+    private Matrix transform(Vec2 position, float angle) {
+        float x = MetersToPixelsUtil.convertPositionX(position);
+        float y = MetersToPixelsUtil.convertPositionY(position);
+        float degrees = -1 * (float)Math.toDegrees(angle);
+
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(-spriteWidth / 2f, -spriteHeight / 2f); // Centers image
+        matrix.postRotate(degrees);
+        matrix.postTranslate(x, y);
+        return matrix;
+    }
 }

@@ -157,7 +157,7 @@ public class PhysicsWorld {
 	}
 
     public void addSprite(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
-        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth());
+        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
         float height = PixelsToMetersUtil.getMeters(sprite.getSpriteHeight()) / 2f ;
         float posX = PixelsToMetersUtil.getMeters(sprite.getX());
         float posY = ( -1 * PixelsToMetersUtil.getMeters(sprite.getY()) );
