@@ -16,6 +16,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -38,28 +39,20 @@ public class PhysicsWorld {
 	}
 
 	public void draw(Canvas canvas){
-		Body body = world.getBodyList();
+        Body body = world.getBodyList();
 		while(body != null){
 			Fixture fixture = body.getFixtureList();
 			while(fixture != null){
 				ShapeType type = fixture.getType();
 				if(type == ShapeType.POLYGON){
-					DrawUtil.drawPolygon(canvas, paint, body, (PolygonShape)fixture.getShape());
+					DrawUtil.drawPolygon(canvas, paint, body, (PolygonShape)fixture.getShape(), fixture.m_userData);
 				}else if(type == ShapeType.CIRCLE){
 					DrawUtil.drawCircle(canvas, paint, body, (CircleShape)fixture.getShape());
 				}
-				
-				Object userData = fixture.m_userData;
-				if(fixture.m_userData != null) {
-					if(userData instanceof Sprite){
-						Sprite sprite = (Sprite)userData;
-						sprite.draw(canvas);
-					}
-				}				
 				fixture = fixture.getNext();
 			}
 			body = body.getNext();
-		}		
+		}
 	}
 
 	public void setVelocityIterations(int velocityIterations) {
@@ -164,7 +157,7 @@ public class PhysicsWorld {
 	}
 
     public void addSprite(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
-        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
+        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth());
         float height = PixelsToMetersUtil.getMeters(sprite.getSpriteHeight()) / 2f ;
         float posX = PixelsToMetersUtil.getMeters(sprite.getX());
         float posY = ( -1 * PixelsToMetersUtil.getMeters(sprite.getY()) );
