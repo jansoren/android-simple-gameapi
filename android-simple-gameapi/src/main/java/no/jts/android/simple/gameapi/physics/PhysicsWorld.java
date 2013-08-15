@@ -101,24 +101,16 @@ public class PhysicsWorld {
 	
 	public void addRectangle(float width, float height, float posX, float posY, FixtureDef fixtureDef, boolean isDynamic){
 		addRectangle(width, height, posX, posY, fixtureDef, isDynamic, null);
-	}		
-	
-	public void addRectangle(float width, float height, float posX, float posY, FixtureDef fixtureDef, boolean isDynamic, Object userData){
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(width,height);
-		
-		fixtureDef.shape = shape;
-		fixtureDef.userData = userData;
-		
-		BodyDef bodyDef = new BodyDef();
-		if(isDynamic){
-			bodyDef.type = BodyType.DYNAMIC;
-		}
-		bodyDef.position.set(posX, posY);
-
-		world.createBody(bodyDef).createFixture(fixtureDef);
 	}
-	
+
+    public void addRectangle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
+        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
+        float height = PixelsToMetersUtil.getMeters(sprite.getSpriteHeight()) / 2f ;
+        float posX = PixelsToMetersUtil.convertPositionX(sprite.getX());
+        float posY = PixelsToMetersUtil.convertPositionY(sprite.getY());
+        addRectangle(width, height, posX, posY, fixtureDef, isDynamic, sprite);
+    }
+
 	public void addCircle(float posX, float posY, float radius, FixtureDef fixtureDef, boolean isDynamic){
 		CircleShape shape = new CircleShape();
 		shape.m_radius = radius;
@@ -156,15 +148,7 @@ public class PhysicsWorld {
 		world.createBody(bodyDef).createFixture(fixtureDef);
 	}
 
-    public void addSprite(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
-        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
-        float height = PixelsToMetersUtil.getMeters(sprite.getSpriteHeight()) / 2f ;
-        float posX = PixelsToMetersUtil.getMeters(sprite.getX());
-        float posY = ( -1 * PixelsToMetersUtil.getMeters(sprite.getY()) );
-        addRectangle(width, height, posX, posY, fixtureDef, isDynamic, sprite);
-    }
-
-	private void addConstraint(float width, float height, float posX, float posY) {
+    private void addConstraint(float width, float height, float posX, float posY) {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		FixtureDef fixureDef = new FixtureDef();
@@ -175,4 +159,20 @@ public class PhysicsWorld {
 
 		world.createBody(bodyDef).createFixture(fixureDef);
 	}
+
+    private void addRectangle(float width, float height, float posX, float posY, FixtureDef fixtureDef, boolean isDynamic, Object userData){
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width,height);
+
+        fixtureDef.shape = shape;
+        fixtureDef.userData = userData;
+
+        BodyDef bodyDef = new BodyDef();
+        if(isDynamic){
+            bodyDef.type = BodyType.DYNAMIC;
+        }
+        bodyDef.position.set(posX, posY);
+
+        world.createBody(bodyDef).createFixture(fixtureDef);
+    }
 }

@@ -83,6 +83,7 @@ public class Sprite extends Position{
 
     public void draw(Canvas canvas, Vec2 position, float angle){
         if(canvas != null && bitmap != null && isVisible){
+            canvas.save();
             Matrix matrix = transform(position, angle);
             canvas.setMatrix(matrix);
             draw(canvas);
@@ -126,11 +127,15 @@ public class Sprite extends Position{
 		this.isVisible = isVisible;
 	}
 
-	public float getXCenter(){
-		return x + (spriteWidth/2);
-	}
+    public float getXCenter(){
+        return x + (spriteWidth/2f);
+    }
 
-	private boolean isTouchedY(float touchY) {
+    public float getYCenter(){
+        return y + (spriteHeight/2f);
+    }
+
+    private boolean isTouchedY(float touchY) {
 		boolean isTouchedY = false;
 		if( touchY > y && touchY < y + spriteHeight ){
 			isTouchedY = true;
@@ -152,7 +157,7 @@ public class Sprite extends Position{
         float degrees = -1 * (float)Math.toDegrees(angle);
 
         Matrix matrix = new Matrix();
-        matrix.postTranslate(-spriteWidth / 2f, -spriteHeight / 2f); // Centers image
+        matrix.postTranslate( - getXCenter(), - getYCenter()); // Centers image
         matrix.postRotate(degrees);
         matrix.postTranslate(x, y);
         return matrix;

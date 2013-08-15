@@ -46,13 +46,16 @@ public class GameScreen extends AbstractScreen {
 		physicsWorld.addWallRight();
 		physicsWorld.addRoof();
 		physicsWorld.addRectangle(1, 1, -1.5f, 1.5f, createFixtureDef(), true);
-		physicsWorld.addRectangle(0.5f, 1.5f, -1.5f, 5.5f, true);
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
 		physicsWorld.addCircle(1, 0, 1, createFixtureDef(), true);
 		physicsWorld.addCircle(-1, -1, 0.5f, createFixtureDef(), true);
-		
-		Sprite sprite = SpriteUtil.createSprite(SpriteUtil.createScaledBitmap(R.drawable.button_new_game), 1, 2);
-		physicsWorld.addSprite(sprite, createFixtureDef(), true);
+
+        Sprite sprite = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
+        physicsWorld.addRectangle(sprite, createFixtureDef(), true);
+
+        Sprite sprite2 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game), 1, 2);
+        sprite2.setPosition(100, -100);
+		physicsWorld.addRectangle(sprite2, createFixtureDef(), true);
 	}
 
 	@Override
