@@ -18,6 +18,7 @@ public class Sprite extends Position{
 	protected Frame frame;
 	protected Rect bounds;
 	protected boolean isVisible;
+    protected float degrees;
 
 	public Sprite(Bitmap bitmap, int spriteWidth, int spriteHeight){
 		super();
@@ -27,6 +28,7 @@ public class Sprite extends Position{
 		this.bounds = new Rect((int)x, (int)y, (int)x+spriteWidth, (int)y+spriteHeight);
 		this.frame = new Frame(spriteWidth, spriteHeight);
 		this.isVisible = true;
+        this.degrees = 0;
 	}
 
 	public Sprite(Sprite sprite) {
@@ -76,19 +78,28 @@ public class Sprite extends Position{
 
 	public void draw(Canvas canvas) {
 		if(canvas != null && bitmap != null && isVisible){
+            canvas.save();
+            if(degrees != 0){
+                canvas.setMatrix(rotate());
+            }
 			RectF dest = new RectF(x, y, x + spriteWidth, y + spriteHeight);
 			canvas.drawBitmap(bitmap, frame.getRect(), dest, null);
-		}
-	}
-
-    public void draw(Canvas canvas, Vec2 position, float angle){
-        if(canvas != null && bitmap != null && isVisible){
-            canvas.save();
-            Matrix matrix = transform(position, angle);
-            canvas.setMatrix(matrix);
-            draw(canvas);
             canvas.restore();
         }
+	}
+
+    private Matrix rotate() {
+        Matrix matrix = new Matrix();
+        matrix.postTranslate( - getXCenter(), - getYCenter()); // Centers image
+        matrix.postRotate(degrees);
+        matrix.postTranslate( x, y); // Centers image
+        return matrix;
+    }
+
+    public void update(Canvas canvas, Vec2 position, float angle){
+        x = MetersToPixelsUtil.convertPositionX(position);
+        y = MetersToPixelsUtil.convertPositionY(position);
+        degrees = -1 * (float)Math.toDegrees(angle);
     }
 
 	public boolean isTouched(float touchX, float touchY){
@@ -150,16 +161,4 @@ public class Sprite extends Position{
 		}
 		return isTouchedX;
 	}
-
-    private Matrix transform(Vec2 position, float angle) {
-        float x = MetersToPixelsUtil.convertPositionX(position);
-        float y = MetersToPixelsUtil.convertPositionY(position);
-        float degrees = -1 * (float)Math.toDegrees(angle);
-
-        Matrix matrix = new Matrix();
-        matrix.postTranslate( - getXCenter(), - getYCenter()); // Centers image
-        matrix.postRotate(degrees);
-        matrix.postTranslate(x, y);
-        return matrix;
-    }
 }

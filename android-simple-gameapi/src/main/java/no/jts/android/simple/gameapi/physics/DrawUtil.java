@@ -5,10 +5,8 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 
 import no.jts.android.simple.gameapi.graphics.Sprite;
@@ -19,7 +17,7 @@ public class DrawUtil {
         if(userData != null) {
             if(userData instanceof Sprite){
                 Sprite sprite = (Sprite)userData;
-                sprite.draw(canvas, body.getPosition(), body.getAngle());
+                sprite.update(canvas, body.getPosition(), body.getAngle());
             }
         }
 
@@ -47,7 +45,7 @@ public class DrawUtil {
         if(userData != null) {
             if(userData instanceof Sprite){
                 Sprite sprite = (Sprite)userData;
-                sprite.draw(canvas, body.getPosition(), body.getAngle());
+                sprite.update(canvas, body.getPosition(), body.getAngle());
             }
         }
 

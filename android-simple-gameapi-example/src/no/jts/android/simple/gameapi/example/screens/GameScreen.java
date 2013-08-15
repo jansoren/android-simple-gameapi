@@ -9,6 +9,7 @@ import org.jbox2d.dynamics.FixtureDef;
 import no.jts.android.simple.gameapi.cache.Cache;
 import no.jts.android.simple.gameapi.example.R;
 import no.jts.android.simple.gameapi.example.setup.Assets;
+import no.jts.android.simple.gameapi.graphics.Button;
 import no.jts.android.simple.gameapi.graphics.Sprite;
 import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.graphics.Text;
@@ -29,13 +30,21 @@ public class GameScreen extends AbstractScreen {
 	private Sprite background;
 	private Text gameEngine;
 	private PhysicsWorld physicsWorld;
-    	
-	public GameScreen(AbstractScreenManager gameScreenManager) {
+    private Sprite circle1;
+    private Sprite circle2;
+    private Sprite sprite1;
+    private Button button1;
+
+    public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
 		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
-		gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
+        gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
 		gameEngine.setPositionInPercent(2, 50);
-	}
+        circle1 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
+        circle2 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
+        sprite1 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
+        button1 = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
+    }
 
 	@Override
 	public void onFocus() {
@@ -47,27 +56,22 @@ public class GameScreen extends AbstractScreen {
 		physicsWorld.addRoof();
 		physicsWorld.addRectangle(1, 1, -1.5f, 1.5f, createFixtureDef(), true);
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
-
-        Sprite sprite = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
-        sprite.setPosition(50, -150);
-        physicsWorld.addCircle(sprite, createFixtureDef(), true);
-        sprite.setPosition(50, -100);
-        physicsWorld.addCircle(sprite, createFixtureDef(), true);
-
-        Sprite sprite1 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
-        physicsWorld.addCircle(sprite1, createFixtureDef(), true);
-
-        Sprite sprite2 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
-        physicsWorld.addRectangle(sprite2, createFixtureDef(), true);
-
-        Sprite sprite3 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game), 1, 2);
-        sprite3.setPosition(100, -100);
-		physicsWorld.addRectangle(sprite3, createFixtureDef(), true);
+        circle1.setPosition(50, -150);
+        physicsWorld.addCircle(circle1, createFixtureDef(), true);
+        circle2.setPosition(0, 0);
+        physicsWorld.addCircle(circle2, createFixtureDef(), true);
+        sprite1.setPosition(0, 0);
+        physicsWorld.addRectangle(sprite1, createFixtureDef(), true);
+        button1.setPosition(100, 100);
+        physicsWorld.addRectangle(button1, createFixtureDef(), true);
 	}
 
 	@Override
 	public void update(float deltaTime) {
 		physicsWorld.update(deltaTime);
+        if(button1.isClicked()){
+            gameScreenManager.setScreenInFocus(ScreenType.MENU);
+        }
 	}
 
 	@Override
@@ -75,11 +79,16 @@ public class GameScreen extends AbstractScreen {
 		background.draw(canvas);
 		gameEngine.draw(canvas);
 		physicsWorld.draw(canvas);
+        circle1.draw(canvas);
+        circle2.draw(canvas);
+        sprite1.draw(canvas);
+        button1.draw(canvas);
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		return false;
+        button1.onTouchEvent(event);
+        return true;
 	}
 
 	@Override
