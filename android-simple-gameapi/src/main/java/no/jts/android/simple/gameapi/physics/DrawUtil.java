@@ -15,15 +15,24 @@ import no.jts.android.simple.gameapi.graphics.Sprite;
 
 public class DrawUtil {
 
-    public static void drawCircle(Canvas canvas, Paint paint, Body body, CircleShape shape){
-		paint.setColor(Color.GREEN);
+    public static void drawCircle(Canvas canvas, Paint paint, Body body, CircleShape shape, Object userData){
+        if(userData != null) {
+            if(userData instanceof Sprite){
+                Sprite sprite = (Sprite)userData;
+                sprite.draw(canvas, body.getPosition(), body.getAngle());
+            }
+        }
+
+        paint.setColor(Color.GREEN);
+        paint.setStyle(Paint.Style.STROKE);
+
 		Vec2 position = body.getPosition();
 		
 		float pixelsX = MetersToPixelsUtil.convertPositionX(position);
 		float pixelsY = MetersToPixelsUtil.convertPositionY(position);
 		float radius = MetersToPixelsUtil.convertRadius(shape.getRadius());
 		
-		canvas.drawCircle(pixelsX, pixelsY, radius, paint);
+		//canvas.drawCircle(pixelsX, pixelsY, radius, paint);
 
 		float angle = body.getAngle();
 		float x = (float)(radius * Math.cos(angle));

@@ -47,15 +47,22 @@ public class GameScreen extends AbstractScreen {
 		physicsWorld.addRoof();
 		physicsWorld.addRectangle(1, 1, -1.5f, 1.5f, createFixtureDef(), true);
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
-		physicsWorld.addCircle(1, 0, 1, createFixtureDef(), true);
-		physicsWorld.addCircle(-1, -1, 0.5f, createFixtureDef(), true);
 
-        Sprite sprite = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
-        physicsWorld.addRectangle(sprite, createFixtureDef(), true);
+        Sprite sprite = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
+        sprite.setPosition(50, -150);
+        physicsWorld.addCircle(sprite, createFixtureDef(), true);
+        sprite.setPosition(50, -100);
+        physicsWorld.addCircle(sprite, createFixtureDef(), true);
 
-        Sprite sprite2 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game), 1, 2);
-        sprite2.setPosition(100, -100);
-		physicsWorld.addRectangle(sprite2, createFixtureDef(), true);
+        Sprite sprite1 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
+        physicsWorld.addCircle(sprite1, createFixtureDef(), true);
+
+        Sprite sprite2 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
+        physicsWorld.addRectangle(sprite2, createFixtureDef(), true);
+
+        Sprite sprite3 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game), 1, 2);
+        sprite3.setPosition(100, -100);
+		physicsWorld.addRectangle(sprite3, createFixtureDef(), true);
 	}
 
 	@Override

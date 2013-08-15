@@ -47,7 +47,7 @@ public class PhysicsWorld {
 				if(type == ShapeType.POLYGON){
 					DrawUtil.drawPolygon(canvas, paint, body, (PolygonShape)fixture.getShape(), fixture.m_userData);
 				}else if(type == ShapeType.CIRCLE){
-					DrawUtil.drawCircle(canvas, paint, body, (CircleShape)fixture.getShape());
+					DrawUtil.drawCircle(canvas, paint, body, (CircleShape)fixture.getShape(), fixture.m_userData);
 				}
 				fixture = fixture.getNext();
 			}
@@ -111,20 +111,17 @@ public class PhysicsWorld {
         addRectangle(width, height, posX, posY, fixtureDef, isDynamic, sprite);
     }
 
-	public void addCircle(float posX, float posY, float radius, FixtureDef fixtureDef, boolean isDynamic){
-		CircleShape shape = new CircleShape();
-		shape.m_radius = radius;
-		
-		fixtureDef.shape = shape;
-		
-		BodyDef bodyDef = new BodyDef();
-		if(isDynamic){
-			bodyDef.type = BodyType.DYNAMIC;
-		}
-		bodyDef.position.set(posX, posY);
-		world.createBody(bodyDef).createFixture(fixtureDef);
-	}
-	
+    public void addCircle(float posX, float posY, float radius, FixtureDef fixtureDef, boolean isDynamic){
+        addCircle(posX, posY, radius, fixtureDef, isDynamic, null);
+    }
+
+    public void addCircle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic) {
+        float radius = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
+        float posX = PixelsToMetersUtil.convertPositionX(sprite.getX());
+        float posY = PixelsToMetersUtil.convertPositionY(sprite.getY());
+        addCircle(posX, posY, radius, fixtureDef, isDynamic, sprite);
+    }
+
 	public void addPolygon(float posX, float posY, List<Vec2> vertices, FixtureDef fixtureDef, boolean isDynamic){
 		addPolygon(posX, posY, vertices, fixtureDef, isDynamic, null);
 	}
@@ -173,6 +170,21 @@ public class PhysicsWorld {
         }
         bodyDef.position.set(posX, posY);
 
+        world.createBody(bodyDef).createFixture(fixtureDef);
+    }
+
+    private void addCircle(float posX, float posY, float radius, FixtureDef fixtureDef, boolean isDynamic, Object userData){
+        CircleShape shape = new CircleShape();
+        shape.m_radius = radius;
+
+        fixtureDef.shape = shape;
+        fixtureDef.userData = userData;
+
+        BodyDef bodyDef = new BodyDef();
+        if(isDynamic){
+            bodyDef.type = BodyType.DYNAMIC;
+        }
+        bodyDef.position.set(posX, posY);
         world.createBody(bodyDef).createFixture(fixtureDef);
     }
 }
