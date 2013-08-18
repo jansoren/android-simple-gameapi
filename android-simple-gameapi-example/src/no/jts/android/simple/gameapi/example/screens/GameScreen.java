@@ -79,10 +79,6 @@ public class GameScreen extends AbstractScreen {
 		background.draw(canvas);
 		gameEngine.draw(canvas);
 		physicsWorld.draw(canvas);
-        circle1.draw(canvas);
-        circle2.draw(canvas);
-        sprite1.draw(canvas);
-        button1.draw(canvas);
 	}
 
 	@Override

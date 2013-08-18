@@ -88,23 +88,15 @@ public class Sprite extends Position{
             canvas.restore();
         }
 	}
-
-    private Matrix rotate() {
-        Matrix matrix = new Matrix();
-        matrix.postTranslate( - getXCenter(), - getYCenter()); // Centers image
-        matrix.postRotate(degrees);
-        matrix.postTranslate( x, y); // Centers image
-        return matrix;
-    }
-
-    public void update(Canvas canvas, Vec2 position, float angle){
+	
+	public void update(Canvas canvas, Vec2 position, float angle){
         Point pixels = MeterPixelConverter.getPixels(position);
     	x = pixels.x;
         y = pixels.y;
         degrees = -1 * (float)Math.toDegrees(angle);
     }
-
-	public boolean isTouched(float touchX, float touchY){
+	
+    public boolean isTouched(float touchX, float touchY){
 		return isTouchedX(touchX) && isTouchedY(touchY);
 	}
 
@@ -148,6 +140,14 @@ public class Sprite extends Position{
         return y + (spriteHeight/2f);
     }
 
+    private Matrix rotate() {
+        Matrix matrix = new Matrix();
+        matrix.postTranslate( - getXCenter(), - getYCenter()); // Centers image
+        matrix.postRotate(degrees);
+        matrix.postTranslate( x, y); // Centers image
+        return matrix;
+    }
+    
     private boolean isTouchedY(float touchY) {
 		boolean isTouchedY = false;
 		if( touchY > y && touchY < y + spriteHeight ){

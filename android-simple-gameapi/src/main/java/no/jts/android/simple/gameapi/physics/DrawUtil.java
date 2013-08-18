@@ -19,6 +19,7 @@ public class DrawUtil {
 			if(userData instanceof Sprite){
 				Sprite sprite = (Sprite)userData;
 				sprite.update(canvas, body.getPosition(), body.getAngle());
+				sprite.draw(canvas);
 			}
 		}
 		if(isDebug){
@@ -47,6 +48,7 @@ public class DrawUtil {
 			if(userData instanceof Sprite){
 				Sprite sprite = (Sprite)userData;
 				sprite.update(canvas, body.getPosition(), body.getAngle());
+				sprite.draw(canvas);
 			}
 		}
 		if(isDebug){
