@@ -30,20 +30,12 @@ public class GameScreen extends AbstractScreen {
 	private Sprite background;
 	private Text gameEngine;
 	private GameWorld physicsWorld;
-    private Sprite circle1;
-    private Sprite circle2;
-    private Sprite sprite1;
-    private Button button1;
-
+    
     public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
 		background = SpriteUtil.createSprite(Cache.get(R.drawable.background));
         gameEngine = new Text(Assets.createPaint(), "Implement your game here!");
 		gameEngine.setPositionInPercent(2, 50);
-        circle1 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
-        circle2 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
-        sprite1 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
-        button1 = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
     }
 
 	@Override
@@ -56,12 +48,20 @@ public class GameScreen extends AbstractScreen {
 		physicsWorld.addRoof();
 		physicsWorld.addRectangle(1, 1, new Vec2(-1.5f, 1.5f), createFixtureDef(), true);
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
+	    
+		Sprite circle1 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
         circle1.setPosition(50, 150);
         physicsWorld.addCircle(circle1, createFixtureDef(), true);
+	    
+        Sprite circle2 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
         circle2.setPosition(240, 400);
         physicsWorld.addCircle(circle2, createFixtureDef(), true);
+	    
+        Sprite sprite1 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
         sprite1.setPosition(0, 0);
         physicsWorld.addRectangle(sprite1, createFixtureDef(), true);
+	    
+        Button button1 = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
         button1.setPosition(100, 100);
         physicsWorld.addRectangle(button1, createFixtureDef(), true);
 	}
@@ -69,9 +69,6 @@ public class GameScreen extends AbstractScreen {
 	@Override
 	public void update(float deltaTime) {
 		physicsWorld.update(deltaTime);
-        if(button1.isClicked()){
-            gameScreenManager.setScreenInFocus(ScreenType.MENU);
-        }
 	}
 
 	@Override
@@ -84,7 +81,6 @@ public class GameScreen extends AbstractScreen {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		physicsWorld.onTouchEvent(event);
-        button1.onTouchEvent(event);
         return true;
 	}
 
