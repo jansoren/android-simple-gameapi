@@ -3,21 +3,21 @@ package no.jts.android.simple.gameapi.example.screens;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.FixtureDef;
-
 import no.jts.android.simple.gameapi.cache.Cache;
 import no.jts.android.simple.gameapi.example.R;
+import no.jts.android.simple.gameapi.example.engine.GameWorld;
 import no.jts.android.simple.gameapi.example.setup.Assets;
 import no.jts.android.simple.gameapi.graphics.Button;
 import no.jts.android.simple.gameapi.graphics.Sprite;
 import no.jts.android.simple.gameapi.graphics.SpriteUtil;
 import no.jts.android.simple.gameapi.graphics.Text;
-import no.jts.android.simple.gameapi.physics.PhysicsWorld;
-import no.jts.android.simple.gameapi.physics.PixelsToMetersUtil;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreen;
 import no.jts.android.simple.gameapi.screenmanagement.AbstractScreenManager;
 import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
+
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.FixtureDef;
+
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -29,7 +29,7 @@ public class GameScreen extends AbstractScreen {
 	
 	private Sprite background;
 	private Text gameEngine;
-	private PhysicsWorld physicsWorld;
+	private GameWorld physicsWorld;
     private Sprite circle1;
     private Sprite circle2;
     private Sprite sprite1;
@@ -49,16 +49,16 @@ public class GameScreen extends AbstractScreen {
 	@Override
 	public void onFocus() {
 		Log.i(TAG, "GameScreen in focus");
-		physicsWorld = new PhysicsWorld(10, 0, -10, Assets.paint);
+		physicsWorld = new GameWorld(10, 0, -10, Assets.paint);
 		physicsWorld.addGround();
 		physicsWorld.addWallLeft();
 		physicsWorld.addWallRight();
 		physicsWorld.addRoof();
-		physicsWorld.addRectangle(1, 1, -1.5f, 1.5f, createFixtureDef(), true);
+		physicsWorld.addRectangle(1, 1, new Vec2(-1.5f, 1.5f), createFixtureDef(), true);
 		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
-        circle1.setPosition(50, -150);
+        circle1.setPosition(50, 150);
         physicsWorld.addCircle(circle1, createFixtureDef(), true);
-        circle2.setPosition(0, 0);
+        circle2.setPosition(240, 400);
         physicsWorld.addCircle(circle2, createFixtureDef(), true);
         sprite1.setPosition(0, 0);
         physicsWorld.addRectangle(sprite1, createFixtureDef(), true);
@@ -87,6 +87,7 @@ public class GameScreen extends AbstractScreen {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		physicsWorld.onTouchEvent(event);
         button1.onTouchEvent(event);
         return true;
 	}

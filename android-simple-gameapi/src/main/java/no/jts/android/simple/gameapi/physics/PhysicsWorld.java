@@ -1,6 +1,5 @@
 package no.jts.android.simple.gameapi.physics;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import no.jts.android.simple.gameapi.graphics.Sprite;
@@ -16,16 +15,17 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 
-public class PhysicsWorld {
+public abstract class PhysicsWorld {
 
-	private World world;
+	protected World world;
 	private Paint paint;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
+	private boolean isDebug = true;
 
 	public PhysicsWorld(float worldSize, float gravityX, float gravityY, Paint paint){
 		WorldGlobals.init(worldSize);
@@ -39,21 +39,31 @@ public class PhysicsWorld {
 	}
 
 	public void draw(Canvas canvas){
-        Body body = world.getBodyList();
+		Body body = world.getBodyList();
 		while(body != null){
 			Fixture fixture = body.getFixtureList();
 			while(fixture != null){
 				ShapeType type = fixture.getType();
 				if(type == ShapeType.POLYGON){
-					DrawUtil.drawPolygon(canvas, paint, body, (PolygonShape)fixture.getShape(), fixture.m_userData);
+					DrawUtil.drawPolygon(canvas, paint, body, (PolygonShape)fixture.getShape(), fixture.m_userData, isDebug);
 				}else if(type == ShapeType.CIRCLE){
-					DrawUtil.drawCircle(canvas, paint, body, (CircleShape)fixture.getShape(), fixture.m_userData);
+					DrawUtil.drawCircle(canvas, paint, body, (CircleShape)fixture.getShape(), fixture.m_userData, isDebug);
 				}
 				fixture = fixture.getNext();
 			}
 			body = body.getNext();
 		}
+		if(isDebug){
+			drawWorldCoordinates(canvas);
+		}
 	}
+
+	private void drawWorldCoordinates(Canvas canvas) {
+		//canvas.drawLine(pixels[i-1].x, pixels[i-1].y, pixels[i].x, pixels[i].y, paint);
+		
+	}
+
+	public abstract boolean onTouchEvent(MotionEvent event);
 
 	public void setVelocityIterations(int velocityIterations) {
 		this.velocityIterations = velocityIterations;
@@ -63,69 +73,69 @@ public class PhysicsWorld {
 		this.positionIterations = positionIterations;
 	}
 
+	public void setDebug(boolean isDebug){
+		this.isDebug = isDebug;
+	}
+
 	public void addGround(){
-		float width = WorldGlobals.worldWidth / 2.0f;
+		Vec2 position = WorldGlobals.worldButtomLeft;
+		position.y = position.y + 0.01f;
+		float width = WorldGlobals.worldWidth;
 		float height = 0.0f;
-		float posX = 0.0f;
-		float posY = -(WorldGlobals.worldHeight / 2.0f);
-		addConstraint(width, height, posX, posY);
+		addConstraint(width, height, position);
 	}
 
 	public void addWallLeft(){
+		Vec2 position = WorldGlobals.worldTopLeft;
 		float width = 0.0f;
-		float height = WorldGlobals.worldHeight / 2.0f;
-		float posX = -(WorldGlobals.worldWidth / 2.0f) - 0.01f;
-		float posY = 0.0f;
-		addConstraint(width, height, posX, posY);
+		float height = WorldGlobals.worldHeight;
+		addConstraint(width, height, position);
 	}
 
 	public void addWallRight(){
+		Vec2 position = WorldGlobals.worldTopRight;
+		position.x = position.x - 0.01f;
 		float width = 0.0f;
-		float height = WorldGlobals.worldHeight / 2.0f;
-		float posX = WorldGlobals.worldWidth / 2.0f;
-		float posY = 0.0f;
-		addConstraint(width, height, posX, posY);
+		float height = WorldGlobals.worldHeight;
+		addConstraint(width, height, position);
 	}
 
 	public void addRoof(){
-		float width = WorldGlobals.worldWidth / 2.0f;
+		Vec2 position = WorldGlobals.worldTopLeft;
+		float width = WorldGlobals.worldWidth;
 		float height = 0.0f;
-		float posX = 0.0f;
-		float posY = (WorldGlobals.worldHeight / 2.0f) + 0.01f;
-		addConstraint(width, height, posX, posY);
+		addConstraint(width, height, position);
 	}
 
-	public void addRectangle(float width, float height, float posX, float posY, boolean isDynamic){
-		addRectangle(width, height, posX, posY, new FixtureDef(), isDynamic, null);
-	}
-	
-	public void addRectangle(float width, float height, float posX, float posY, FixtureDef fixtureDef, boolean isDynamic){
-		addRectangle(width, height, posX, posY, fixtureDef, isDynamic, null);
+	public void addRectangle(float width, float height, Vec2 position, boolean isDynamic){
+		addRectangle(width, height, position, new FixtureDef(), isDynamic, null);
 	}
 
-    public void addRectangle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
-        float width = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
-        float height = PixelsToMetersUtil.getMeters(sprite.getSpriteHeight()) / 2f ;
-        float posX = PixelsToMetersUtil.convertPositionX(sprite.getX());
-        float posY = PixelsToMetersUtil.convertPositionY(sprite.getY());
-        addRectangle(width, height, posX, posY, fixtureDef, isDynamic, sprite);
-    }
+	public void addRectangle(float width, float height, Vec2 position, FixtureDef fixtureDef, boolean isDynamic){
+		addRectangle(width, height, position, fixtureDef, isDynamic, null);
+	}
 
-    public void addCircle(float posX, float posY, float radius, FixtureDef fixtureDef, boolean isDynamic){
-        addCircle(posX, posY, radius, fixtureDef, isDynamic, null);
-    }
+	public void addRectangle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
+		float width = MeterPixelConverter.getMeters(sprite.getSpriteWidth());
+		float height = MeterPixelConverter.getMeters(sprite.getSpriteHeight());
+		Vec2 position = MeterPixelConverter.getMeters(sprite);
+		addRectangle(width, height, position, fixtureDef, isDynamic, sprite);
+	}
 
-    public void addCircle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic) {
-        float radius = PixelsToMetersUtil.getMeters(sprite.getSpriteWidth()) / 2f;
-        float posX = PixelsToMetersUtil.convertPositionX(sprite.getX());
-        float posY = PixelsToMetersUtil.convertPositionY(sprite.getY());
-        addCircle(posX, posY, radius, fixtureDef, isDynamic, sprite);
-    }
+	public void addCircle(Vec2 position, float radius, FixtureDef fixtureDef, boolean isDynamic){
+		addCircle(position, radius, fixtureDef, isDynamic, null);
+	}
+
+	public void addCircle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic) {
+		float radius = MeterPixelConverter.getMeters(sprite.getSpriteWidth());
+		Vec2 position = MeterPixelConverter.getMeters(sprite);
+		addCircle(position, radius, fixtureDef, isDynamic, sprite);
+	}
 
 	public void addPolygon(float posX, float posY, List<Vec2> vertices, FixtureDef fixtureDef, boolean isDynamic){
 		addPolygon(posX, posY, vertices, fixtureDef, isDynamic, null);
 	}
-	
+
 	public void addPolygon(float posX, float posY, List<Vec2> vertices, FixtureDef fixtureDef, boolean isDynamic, Object userData){
 		PolygonShape shape = new PolygonShape();
 		Vec2[] array = new Vec2[vertices.size()];
@@ -133,10 +143,10 @@ public class PhysicsWorld {
 			array[i] = vertices.get(i);
 		}
 		shape.set(array, array.length);
-		
+
 		fixtureDef.shape = shape;
 		fixtureDef.userData = userData;
-		
+
 		BodyDef bodyDef = new BodyDef();
 		if(isDynamic){
 			bodyDef.type = BodyType.DYNAMIC;
@@ -145,46 +155,46 @@ public class PhysicsWorld {
 		world.createBody(bodyDef).createFixture(fixtureDef);
 	}
 
-    private void addConstraint(float width, float height, float posX, float posY) {
+	private void addConstraint(float width, float height, Vec2 position) {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		FixtureDef fixureDef = new FixtureDef();
 		fixureDef.shape = shape;
 
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.position= new Vec2(posX, posY);
+		bodyDef.position= new Vec2(position);
 
 		world.createBody(bodyDef).createFixture(fixureDef);
 	}
 
-    private void addRectangle(float width, float height, float posX, float posY, FixtureDef fixtureDef, boolean isDynamic, Object userData){
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width,height);
+	private void addRectangle(float width, float height, Vec2 position, FixtureDef fixtureDef, boolean isDynamic, Object userData){
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(width,height);
 
-        fixtureDef.shape = shape;
-        fixtureDef.userData = userData;
+		fixtureDef.shape = shape;
+		fixtureDef.userData = userData;
 
-        BodyDef bodyDef = new BodyDef();
-        if(isDynamic){
-            bodyDef.type = BodyType.DYNAMIC;
-        }
-        bodyDef.position.set(posX, posY);
+		BodyDef bodyDef = new BodyDef();
+		if(isDynamic){
+			bodyDef.type = BodyType.DYNAMIC;
+		}
+		bodyDef.position.set(position);
 
-        world.createBody(bodyDef).createFixture(fixtureDef);
-    }
+		world.createBody(bodyDef).createFixture(fixtureDef);
+	}
 
-    private void addCircle(float posX, float posY, float radius, FixtureDef fixtureDef, boolean isDynamic, Object userData){
-        CircleShape shape = new CircleShape();
-        shape.m_radius = radius;
+	private void addCircle(Vec2 position, float radius, FixtureDef fixtureDef, boolean isDynamic, Object userData){
+		CircleShape shape = new CircleShape();
+		shape.m_radius = radius;
 
-        fixtureDef.shape = shape;
-        fixtureDef.userData = userData;
+		fixtureDef.shape = shape;
+		fixtureDef.userData = userData;
 
-        BodyDef bodyDef = new BodyDef();
-        if(isDynamic){
-            bodyDef.type = BodyType.DYNAMIC;
-        }
-        bodyDef.position.set(posX, posY);
-        world.createBody(bodyDef).createFixture(fixtureDef);
-    }
+		BodyDef bodyDef = new BodyDef();
+		if(isDynamic){
+			bodyDef.type = BodyType.DYNAMIC;
+		}
+		bodyDef.position.set(position);
+		world.createBody(bodyDef).createFixture(fixtureDef);
+	}
 }

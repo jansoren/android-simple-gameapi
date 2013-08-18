@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
-public class Cache {
+public final class Cache {
 
 	private static final String TAG = "Cache";
 

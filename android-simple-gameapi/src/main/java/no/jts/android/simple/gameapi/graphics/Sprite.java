@@ -1,14 +1,15 @@
 package no.jts.android.simple.gameapi.graphics;
 
-import no.jts.android.simple.gameapi.physics.MetersToPixelsUtil;
+import no.jts.android.simple.gameapi.physics.MeterPixelConverter;
 import no.jts.android.simple.gameapi.setup.Globals;
+
+import org.jbox2d.common.Vec2;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
-
-import org.jbox2d.common.Vec2;
 
 public class Sprite extends Position{
 
@@ -97,8 +98,9 @@ public class Sprite extends Position{
     }
 
     public void update(Canvas canvas, Vec2 position, float angle){
-        x = MetersToPixelsUtil.convertPositionX(position);
-        y = MetersToPixelsUtil.convertPositionY(position);
+        Point pixels = MeterPixelConverter.getPixels(position);
+    	x = pixels.x;
+        y = pixels.y;
         degrees = -1 * (float)Math.toDegrees(angle);
     }
 
