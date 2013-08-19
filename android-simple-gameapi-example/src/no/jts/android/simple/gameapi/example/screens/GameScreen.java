@@ -29,7 +29,7 @@ public class GameScreen extends AbstractScreen {
 	
 	private Sprite background;
 	private Text gameEngine;
-	private GameWorld physicsWorld;
+	private GameWorld world;
     
     public GameScreen(AbstractScreenManager gameScreenManager) {
 		super(gameScreenManager);
@@ -41,46 +41,46 @@ public class GameScreen extends AbstractScreen {
 	@Override
 	public void onFocus() {
 		Log.i(TAG, "GameScreen in focus");
-		physicsWorld = new GameWorld(10, 0, -10, Assets.paint);
-		physicsWorld.addGround();
-		physicsWorld.addWallLeft();
-		physicsWorld.addWallRight();
-		physicsWorld.addRoof();
-		physicsWorld.addRectangle(1, 1, new Vec2(-1.5f, 1.5f), createFixtureDef(), true);
-		physicsWorld.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
+		world = new GameWorld(10, 0, -10, Assets.paint);
+		world.addGround();
+		world.addWallLeft();
+		world.addWallRight();
+		world.addRoof();
+		world.addRectangle(1, 1, new Vec2(-1.5f, 1.5f), createFixtureDef(), true);
+		world.addPolygon(0, 4, createPolygon(), createFixtureDef(), true);
 	    
 		Sprite circle1 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
         circle1.setPosition(50, 150);
-        physicsWorld.addCircle(circle1, createFixtureDef(), true);
+        world.addCircle(circle1, createFixtureDef(), true);
 	    
         Sprite circle2 = SpriteUtil.createSprite(Cache.get(R.drawable.ic_launcher));
         circle2.setPosition(240, 400);
-        physicsWorld.addCircle(circle2, createFixtureDef(), true);
+        world.addCircle(circle2, createFixtureDef(), true);
 	    
         Sprite sprite1 = SpriteUtil.createSprite(Cache.get(R.drawable.button_new_game));
-        sprite1.setPosition(0, 0);
-        physicsWorld.addRectangle(sprite1, createFixtureDef(), true);
+        sprite1.setPosition(200, 50);
+        world.addRectangle(sprite1, createFixtureDef(), true);
 	    
         Button button1 = SpriteUtil.createButton(Cache.get(R.drawable.button_new_game));
-        button1.setPosition(100, 100);
-        physicsWorld.addRectangle(button1, createFixtureDef(), true);
+        button1.setPosition(200, 150);
+        world.addRectangle(button1, createFixtureDef(), true);
 	}
 
 	@Override
 	public void update(float deltaTime) {
-		physicsWorld.update(deltaTime);
+		world.update(deltaTime);
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
 		background.draw(canvas);
 		gameEngine.draw(canvas);
-		physicsWorld.draw(canvas);
+		world.draw(canvas);
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		physicsWorld.onTouchEvent(event);
+		world.onTouchEvent(event);
         return true;
 	}
 
