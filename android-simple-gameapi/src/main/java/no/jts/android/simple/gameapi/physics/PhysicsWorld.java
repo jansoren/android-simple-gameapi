@@ -3,7 +3,6 @@ package no.jts.android.simple.gameapi.physics;
 import java.util.List;
 
 import no.jts.android.simple.gameapi.graphics.Sprite;
-import no.jts.android.simple.gameapi.screenmanagement.ScreenType;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
