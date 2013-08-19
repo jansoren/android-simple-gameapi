@@ -1,6 +1,8 @@
 package no.jts.android.simple.gameapi.screenmanagement;
 
+import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
@@ -30,4 +32,12 @@ public abstract class AbstractScreen {
 	public abstract boolean onKeyDown(int keyCode, KeyEvent event);
 
 	public abstract void onExit();
+	
+	protected void drawBackgroundColor(Canvas canvas, int color) {
+		Paint paint = new Paint();
+		int backupColor = paint.getColor();
+		paint.setColor(color);
+		canvas.drawRect(0, 0, Globals.displayWidth, Globals.displayHeight, paint);
+		paint.setColor(backupColor);
+	}
 }
