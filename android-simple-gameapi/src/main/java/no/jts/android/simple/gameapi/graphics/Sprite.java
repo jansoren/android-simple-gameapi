@@ -91,8 +91,8 @@ public class Sprite extends Position{
 	
 	public void update(Canvas canvas, Vec2 position, float angle){
         Point pixels = MeterPixelConverter.getPixels(position);
-    	x = pixels.x;
-        y = pixels.y;
+    	x = pixels.x - (spriteWidth / 2f);
+        y = pixels.y - (spriteHeight / 2f);
         degrees = -1 * (float)Math.toDegrees(angle);
     }
 	
@@ -142,9 +142,9 @@ public class Sprite extends Position{
 
     private Matrix rotate() {
         Matrix matrix = new Matrix();
-        matrix.postTranslate( - getXCenter(), - getYCenter()); // Centers image
+        matrix.postTranslate( -getXCenter(), -getYCenter());
         matrix.postRotate(degrees);
-        matrix.postTranslate( x, y); // Centers image
+        matrix.postTranslate(getXCenter(), getYCenter());
         return matrix;
     }
     
