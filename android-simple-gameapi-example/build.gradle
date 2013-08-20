@@ -8,6 +8,7 @@ repositories {
 }
 
 dependencies {
+	compile 'com.google.android:support-v4:r7'
 	compile project(':android-simple-gameapi')
 }
 
