@@ -122,21 +122,21 @@ public abstract class PhysicsWorld {
 		addRectangle(width, height, position, fixtureDef, isDynamic, sprite);
 	}
 
-	public void addCircle(Vec2 position, float radius, FixtureDef fixtureDef, boolean isDynamic){
-		addCircle(position, radius, fixtureDef, isDynamic, null);
+	public Body addCircle(Vec2 position, float radius, FixtureDef fixtureDef, boolean isDynamic){
+		return addCircle(position, radius, fixtureDef, isDynamic, null);
 	}
 
-	public void addCircle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic) {
+	public Body addCircle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic) {
 		float radius = MeterPixelConverter.getMeters(sprite.getSpriteWidth());
 		Vec2 position = MeterPixelConverter.getMeters(sprite);
-		addCircle(position, radius, fixtureDef, isDynamic, sprite);
+		return addCircle(position, radius, fixtureDef, isDynamic, sprite);
 	}
 
 	public void addPolygon(float posX, float posY, List<Vec2> vertices, FixtureDef fixtureDef, boolean isDynamic){
 		addPolygon(posX, posY, vertices, fixtureDef, isDynamic, null);
 	}
 
-	public void addPolygon(float posX, float posY, List<Vec2> vertices, FixtureDef fixtureDef, boolean isDynamic, Object userData){
+	public Body addPolygon(float posX, float posY, List<Vec2> vertices, FixtureDef fixtureDef, boolean isDynamic, Object userData){
 		PolygonShape shape = new PolygonShape();
 		Vec2[] array = new Vec2[vertices.size()];
 		for(int i=0; i<vertices.size(); i++){
@@ -152,7 +152,9 @@ public abstract class PhysicsWorld {
 			bodyDef.type = BodyType.DYNAMIC;
 		}
 		bodyDef.position.set(posX, posY);
-		world.createBody(bodyDef).createFixture(fixtureDef);
+		Body body = world.createBody(bodyDef);
+		body.createFixture(fixtureDef);
+		return body;
 	}
 
 	private void addConstraint(float width, float height, Vec2 position) {
@@ -183,7 +185,7 @@ public abstract class PhysicsWorld {
 		world.createBody(bodyDef).createFixture(fixtureDef);
 	}
 
-	private void addCircle(Vec2 position, float radius, FixtureDef fixtureDef, boolean isDynamic, Object userData){
+	private Body addCircle(Vec2 position, float radius, FixtureDef fixtureDef, boolean isDynamic, Object userData){
 		CircleShape shape = new CircleShape();
 		shape.m_radius = radius;
 
@@ -195,6 +197,10 @@ public abstract class PhysicsWorld {
 			bodyDef.type = BodyType.DYNAMIC;
 		}
 		bodyDef.position.set(position);
-		world.createBody(bodyDef).createFixture(fixtureDef);
+		Body body = world.createBody(bodyDef);
+		if(body != null) {
+			body.createFixture(fixtureDef);
+		}
+		return body;
 	}
 }

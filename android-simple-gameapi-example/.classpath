@@ -5,6 +5,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry exported="true" kind="lib" path="/android-simple-gameapi/target/android-simple-gameapi-1.0.2-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/android-simple-gameapi/target/android-simple-gameapi-1.0.3-jar-with-dependencies.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
