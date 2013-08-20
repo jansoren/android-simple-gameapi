@@ -53,3 +53,7 @@ This distribution contains:
 6. Enter the projects build path in the `Projects`-tab and add `android-simple-gameapi`
 
 You are now ready for developing android games!
+
+## Donate
+  
+[![Flattr Button](http://api.flattr.com/button/button-static-50x60.png "Flattr This!")](https://flattr.com/profile/arcone "Arcone")
