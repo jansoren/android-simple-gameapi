@@ -56,4 +56,4 @@ You are now ready for developing android games!
 
 ## Donate
   
-[![Flattr Button](http://api.flattr.com/button/button-static-50x60.png "Flattr This!")](https://flattr.com/profile/arcone "Arcone")
+[![Flattr Button](http://api.flattr.com/button/button-static-50x60.png "Flattr This!")](http://flattr.com/thing/1833285/jansorenandroid-simple-gameapi-on-GitHub "Arcone")
