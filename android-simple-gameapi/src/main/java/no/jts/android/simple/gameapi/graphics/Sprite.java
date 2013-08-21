@@ -1,7 +1,6 @@
 package no.jts.android.simple.gameapi.graphics;
 
 import no.jts.android.simple.gameapi.physics.MeterPixelConverter;
-import no.jts.android.simple.gameapi.setup.Globals;
 
 import org.jbox2d.common.Vec2;
 
