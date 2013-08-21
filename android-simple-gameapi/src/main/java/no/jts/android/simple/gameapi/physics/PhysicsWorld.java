@@ -116,8 +116,8 @@ public abstract class PhysicsWorld {
 	}
 
 	public void addRectangle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic){
-		float width = MeterPixelConverter.getMeters(sprite.getSpriteWidth());
-		float height = MeterPixelConverter.getMeters(sprite.getSpriteHeight());
+		float width = MeterPixelConverter.getMeters(sprite.getWidth());
+		float height = MeterPixelConverter.getMeters(sprite.getHeight());
 		Vec2 position = MeterPixelConverter.getMeters(sprite);
 		addRectangle(width, height, position, fixtureDef, isDynamic, sprite);
 	}
@@ -127,7 +127,7 @@ public abstract class PhysicsWorld {
 	}
 
 	public Body addCircle(Sprite sprite, FixtureDef fixtureDef, boolean isDynamic) {
-		float radius = MeterPixelConverter.getMeters(sprite.getSpriteWidth());
+		float radius = MeterPixelConverter.getMeters(sprite.getWidth());
 		Vec2 position = MeterPixelConverter.getMeters(sprite);
 		return addCircle(position, radius, fixtureDef, isDynamic, sprite);
 	}

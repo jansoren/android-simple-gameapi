@@ -4,7 +4,7 @@ import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Canvas;
 
 
-public abstract class Position extends Point{
+public abstract class Position extends Area{
 	protected int speed; // pixels per second
 	protected int min;
 	protected int max;
@@ -24,16 +24,6 @@ public abstract class Position extends Point{
 		this.pixelHeightRelation = Globals.displayHeight/480f;
 	}
 
-	public void setPositionXInPercent(int percent){
-		x = Globals.displayWidth * (percent / 100f);
-	}
-	public void setPositionYInPercent(int percent){
-		y = Globals.displayHeight * (percent / 100f);
-	}
-	public void setPositionInPercent(int percentX, int percentY){
-		setPositionXInPercent(percentX);
-		setPositionYInPercent(percentY);
-	}
 	public int getSpeed(){
 		return speed;
 	}
