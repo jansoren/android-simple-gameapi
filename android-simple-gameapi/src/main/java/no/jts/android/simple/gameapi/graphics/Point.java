@@ -15,6 +15,11 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public void setPosition(Point point){
+		this.x = point.x;
+		this.y = point.y;
+	}
 
     public void setPositionXInPercent(int percent){
         x = Globals.displayWidth * (percent / 100f);
