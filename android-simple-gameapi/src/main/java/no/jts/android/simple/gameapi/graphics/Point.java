@@ -24,6 +24,14 @@ public class Point {
         y = Globals.displayHeight * (percent / 100f);
     }
 
+    public float getX(){
+    	return x;
+    }
+    
+    public float getY(){
+    	return y;
+    }
+    
     public void setPositionInPercent(int percentX, int percentY){
         setPositionXInPercent(percentX);
         setPositionYInPercent(percentY);

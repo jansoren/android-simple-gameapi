@@ -1,11 +1,10 @@
 package no.jts.android.simple.gameapi.graphics;
 
+import no.jts.android.simple.gameapi.setup.Globals;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-
-import android.graphics.Canvas;
-
-import no.jts.android.simple.gameapi.setup.Globals;
 
 public class Area extends Point{
 
@@ -47,7 +46,7 @@ public class Area extends Point{
     }
 
     public void setWidthInPercent(int percent){
-        width = Globals.displayWidth * (percent / 100);
+        width = Math.round(Globals.displayWidth * (percent / 100f));
     }
 
     public int getHeight() {
@@ -55,7 +54,7 @@ public class Area extends Point{
     }
 
     public void setHeightInPercent(int percent){
-        height = Globals.displayHeight * (percent / 100);
+        height = Math.round(Globals.displayHeight * (percent / 100f));
     }
 
     public float getXCenter(){
@@ -71,7 +70,9 @@ public class Area extends Point{
     }
 
     public void draw(Canvas canvas, Paint paint){
-        RectF rect = new RectF(x, y, x + width, y + height);
+    	paint.setStrokeWidth(3);
+    	paint.setColor(Color.BLUE);
+    	RectF rect = new RectF(x, y, x + width, y + height);
         canvas.drawRect(rect, paint);
     }
 
