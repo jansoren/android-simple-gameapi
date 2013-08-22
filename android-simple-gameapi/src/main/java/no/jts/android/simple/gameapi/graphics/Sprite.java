@@ -1,5 +1,6 @@
 package no.jts.android.simple.gameapi.graphics;
 
+import no.jts.android.simple.gameapi.physics.Box2dData;
 import no.jts.android.simple.gameapi.physics.MeterPixelConverter;
 
 import org.jbox2d.common.Vec2;
@@ -17,6 +18,7 @@ public class Sprite extends Position{
 	protected Rect bounds;
 	protected boolean isVisible;
     protected float degrees;
+    private Box2dData box2dData;
 
 	public Sprite(Bitmap bitmap, int width, int height){
 		super();
@@ -90,6 +92,14 @@ public class Sprite extends Position{
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
+
+    public void setBox2dData(Box2dData box2dData){
+        this.box2dData = box2dData;
+    }
+
+    public Box2dData getBox2dData(){
+        return box2dData;
+    }
 
     private Matrix rotate() {
         Matrix matrix = new Matrix();
