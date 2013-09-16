@@ -2,7 +2,6 @@ package no.jts.android.simple.gameapi.graphics;
 
 import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
@@ -70,8 +69,6 @@ public class Area extends Point{
     }
 
     public void draw(Canvas canvas, Paint paint){
-    	paint.setStrokeWidth(3);
-    	paint.setColor(Color.BLUE);
     	RectF rect = new RectF(x, y, x + width, y + height);
         canvas.drawRect(rect, paint);
     }
