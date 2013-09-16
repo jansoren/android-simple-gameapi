@@ -34,10 +34,12 @@ public abstract class AbstractScreen {
 	public abstract void onExit();
 	
 	protected void drawBackgroundColor(Canvas canvas, int color) {
-		Paint paint = new Paint();
-		int backupColor = paint.getColor();
-		paint.setColor(color);
-		canvas.drawRect(0, 0, Globals.displayWidth, Globals.displayHeight, paint);
-		paint.setColor(backupColor);
+		if(canvas != null){
+			Paint paint = new Paint();
+			int backupColor = paint.getColor();
+			paint.setColor(color);
+			canvas.drawRect(0, 0, Globals.displayWidth, Globals.displayHeight, paint);
+			paint.setColor(backupColor);
+		}
 	}
 }
