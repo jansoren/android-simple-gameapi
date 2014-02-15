@@ -2,6 +2,7 @@ package no.jts.android.simple.gameapi.graphics;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 public class Text extends Position {
 
@@ -28,7 +29,19 @@ public class Text extends Position {
 	}
 	public void draw(Canvas canvas) {
 		if(canvas!=null && text!=null && paint!=null){
-			canvas.drawText( text, x, y, paint);
+			canvas.drawText(text, x, y, paint);
+		}
+	}
+	public Rect getBounds()  {
+		Rect bounds = new Rect();
+		if(paint != null)  {
+			paint.getTextBounds(text, 0, text.length(), bounds);
+		}
+		return bounds;
+	}
+	public void setColor(int color) {
+		if(paint != null) {
+			paint.setColor(color);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package no.jts.android.simple.gameapi.graphics;
 import no.jts.android.simple.gameapi.setup.Globals;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 
 public class SpriteUtil {
 
@@ -33,14 +34,19 @@ public class SpriteUtil {
 	
 	public static Button createButton(int id, String soundIndex){
 		Sprite sprite = createSprite(id, 1, 2);
-		return createButton(soundIndex, sprite);
+		return createButton(sprite, soundIndex);
 	}
 
 	public static Button createButton(Bitmap bitmap, String soundIndex){
 		Sprite sprite = createSprite(bitmap, 1, 2);
-		return createButton(soundIndex, sprite);
+		return createButton(sprite, soundIndex);
 	}
 
+	public static TextButton createTextButton(Bitmap bitmap, Paint paint, String text){
+		Sprite sprite = createSprite(bitmap, 1, 2);
+		return createTextButton(sprite, null, paint, text);
+	}
+	
 	public static ToggleButton createToggleButton(int id, boolean isOn){
 		return createToggleButton(id, null, isOn);
 	}
@@ -73,11 +79,19 @@ public class SpriteUtil {
 		return Bitmap.createScaledBitmap(bitmap, scaleToWidth, scaleToHeight, true);
 	}
 	
-	private static Button createButton(String soundIndex, Sprite sprite) {
+	private static Button createButton(Sprite sprite, String soundIndex) {
 		Button button = new Button(sprite);
 		if(soundIndex != null){
 			button.setSoundIndex(soundIndex);
 		}
 		return button;
+	}
+	
+	private static TextButton createTextButton(Sprite sprite, String soundIndex, Paint paint, String text) {
+		TextButton textButton = new TextButton(sprite, paint, text);
+		if(soundIndex != null){
+			textButton.setSoundIndex(soundIndex);
+		}
+		return textButton;
 	}
 }
