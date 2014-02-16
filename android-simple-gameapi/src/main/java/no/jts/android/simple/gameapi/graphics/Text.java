@@ -44,4 +44,17 @@ public class Text extends Position {
 			paint.setColor(color);
 		}
 	}
+	@Override
+	public void setPositionCenterHorizontal() {
+		super.setPositionCenterHorizontal();
+		Rect rect = getBounds();
+		x = x  - ((rect.left + rect.right) / 2f);		
+	}
+	@Override
+	public void setPositionCenterVertical() {
+		super.setPositionCenterVertical();
+		Rect rect = getBounds();
+		y = y - (rect.top/2f);		
+	}
+	
 }
