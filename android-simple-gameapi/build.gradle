@@ -6,8 +6,18 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
 dependencies {
-	compile 'com.google.android:android:4.1.1.4'
+    provided 'com.google.android:android:4.1.1.4'
 	compile 'org.jbox2d:jbox2d-library:2.2.1.1'
 	
 	testCompile  'junit:junit:4.11'
