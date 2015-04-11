@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.google.android:android:2.3.1'
+	compile 'com.google.android:android:4.1.1.4'
 	compile 'com.google.android:support-v4:r7'
 	compile 'org.jbox2d:jbox2d-library:2.2.1.1'
 	
