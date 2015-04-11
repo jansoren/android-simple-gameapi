@@ -1,8 +1,8 @@
 package no.jts.android.simple.gameapi.cache;
 
 import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
 import android.util.Log;
+import android.util.LruCache;
 
 public class BitmapLruCache extends LruCache<Integer, Bitmap> {
 	private static final String TAG = "BitmapLruCache";
