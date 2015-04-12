@@ -1,23 +1,21 @@
 apply plugin: 'java'
 
-version = '2.0.0'
+version '2.0.0'
+group   'no.jts.android.simple.gameapi'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+compileJava.doFirst {
+    println "source compatibility " + sourceCompatibility
+}
 
 repositories {
     mavenCentral()
 }
 
-configurations {
-    provided
-}
-
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-}
-
 dependencies {
-    provided 'com.google.android:android:4.1.1.4'
+    compile 'com.google.android:android:4.1.1.4'
 	compile 'org.jbox2d:jbox2d-library:2.2.1.1'
 	
 	testCompile  'junit:junit:4.11'

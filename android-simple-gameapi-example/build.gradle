@@ -1,20 +1,26 @@
-apply plugin: 'android'
-
-sourceCompatibility = 1.6
-version = '1.0.2'
+apply plugin: 'com.android.application'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-	compile 'com.google.android:support-v4:r7'
 	compile project(':android-simple-gameapi')
 }
 
 android {
-	buildToolsVersion "17" 
-	compileSdkVersion 10
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
 	sourceSets {
 		main {
 			manifest.srcFile 'AndroidManifest.xml'
